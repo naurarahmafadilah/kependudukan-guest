@@ -82,6 +82,7 @@
                         <a href="{{ route('dashboard') }}" class="nav-item nav-link active">Dashboard</a>
                         <a href="{{ route('warga.index') }}" class="nav-item nav-link">Data Warga</a>
                         <a href="{{ route('kependudukan.index') }}" class="nav-item nav-link">Data Keluarga</a>
+                        <a href="{{ route('user.index') }}" class="nav-item nav-link">Data User</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu bg-light m-0">
@@ -747,6 +748,7 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('assets-guest/js/main.js')}}"></script>
+
 </body>
 
 </html>

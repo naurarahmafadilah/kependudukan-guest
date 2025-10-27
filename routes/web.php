@@ -5,6 +5,8 @@ use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\KeluargaKkController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
 
 Route::get('/', function () {
@@ -17,3 +19,8 @@ Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard'
 
 Route::resource('warga', WargaController::class);
 Route::resource('kependudukan', KeluargaKkController::class);
+
+Route::get('login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('login', [AuthController::class, 'login'])->name('login.post');
+
+Route::resource('user', UserController::class);
