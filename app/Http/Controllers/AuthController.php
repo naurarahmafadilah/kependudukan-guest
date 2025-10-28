@@ -23,11 +23,11 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {
-            return back()->withErrors(['email' => 'Email tidak ditemukan.'])->withInput();
+            return back()->withErrors(['email' => 'Email tidak ditemukan'])->withInput();
         }
 
         if (!Hash::check($request->password, $user->password)) {
-            return back()->withErrors(['password' => 'Password salah.'])->withInput();
+            return back()->withErrors(['password' => 'Password salah'])->withInput();
         }
 
         session([
