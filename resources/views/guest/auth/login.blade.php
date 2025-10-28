@@ -47,14 +47,14 @@
         }
 
         .btn-login {
-            background-color: #198754;
+            background-color: #194387ff;
             color: white;
             width: 100%;
             font-weight: 500;
         }
 
         .btn-login:hover {
-            background-color: #157347;
+            background-color: #194387ff;
         }
 
         .form-label {
