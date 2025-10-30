@@ -15,6 +15,36 @@ body {
   line-height: 1.7;
 }
 
+/* =========================================
+   🌿 CENTER ALIGN TEXT CONTENT (by Naura)
+   ========================================= */
+.main-content {
+  display: flex;
+  justify-content: center;  /* Tengahkan secara horizontal */
+  align-items: center;       /* Tengahkan secara vertikal */
+  flex-direction: column;
+  min-height: 70vh;
+  text-align: center;        /* Semua teks rata tengah */
+  padding: 40px 20px;
+}
+
+.main-content .container {
+  max-width: 900px;
+  background: #ffffff;
+  padding: 50px 60px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;        /* Pastikan isi dalam container juga rata tengah */
+}
+
+/* Responsif di layar kecil */
+@media (max-width: 768px) {
+  .main-content .container {
+    padding: 25px 20px;
+  }
+}
+
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;

@@ -1,17 +1,32 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WargaController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\WargaController;
 use App\Http\Controllers\KeluargaKkController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthController;
 
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('guest.pages.home');
+})->name('home');
+
+// Halaman Tentang
+Route::get('/about', function () {
+    return view('guest.pages.about');
+})->name('about');
+
+// Halaman Layanan
+Route::get('/layanan', function () {
+    return view('guest.pages.layanan');
+})->name('layanan');
+
+// Halaman Kontak
+Route::get('/kontak', function () {
+    return view('guest.pages.kontak');
+})->name('kontak');
 
 Route::get('/keluarga', [KeluargaController::class, 'index']);
 

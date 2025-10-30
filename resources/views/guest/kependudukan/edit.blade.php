@@ -14,7 +14,7 @@
     </div>
   @endif
 
-  <form action="{{ route('keluarga.update', $keluarga->kk_id) }}" method="POST" class="card shadow p-4 border-0 rounded-4">
+  <form action="{{ route('kependudukan.update', $keluarga->kk_id) }}" method="POST" class="card shadow p-4 border-0 rounded-4">
     @csrf
     @method('PUT')
 
