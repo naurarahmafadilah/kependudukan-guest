@@ -30,22 +30,22 @@
           <div class="card border-0 shadow-sm h-100 rounded-3">
             <div class="card-body">
               <h5 class="card-title text-success fw-bold mb-3">
-                <i class="bi bi-house"></i> No. KK: 
-                <span class="text-dark">{{ $item->no_kk ?? '-' }}</span>
+                <i class="bi bi-house"></i> No. KK:
+                <span class="text-dark">{{ $item->kk_nomor ?? '-' }}</span>
               </h5>
-              
+
               <p class="card-text mb-2">
-                <i class="bi bi-person-circle"></i> 
+                <i class="bi bi-person-circle"></i>
                 <strong>Kepala Keluarga:</strong> {{ $item->kepalaKeluarga->nama ?? '-' }}
               </p>
 
               <p class="card-text mb-2">
-                <i class="bi bi-geo-alt"></i> 
+                <i class="bi bi-geo-alt"></i>
                 <strong>Alamat:</strong> {{ $item->alamat ?? '-' }}
               </p>
 
               <p class="card-text mb-3">
-                <i class="bi bi-signpost-split"></i> 
+                <i class="bi bi-signpost-split"></i>
                 <strong>RT/RW:</strong> {{ $item->rt ?? '-' }}/{{ $item->rw ?? '-' }}
               </p>
 

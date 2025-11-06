@@ -38,7 +38,7 @@ class KeluargaKkController extends Controller
     {
         $keluarga = KeluargaKk::findOrFail($id);
         $warga = Warga::all();
-        return view('kependudukan.edit', compact('keluarga', 'warga'));
+        return view('guest.kependudukan.edit', compact('keluarga', 'warga'));
     }
 
     public function update(Request $request, $id)

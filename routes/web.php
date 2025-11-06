@@ -10,23 +10,25 @@ use App\Http\Controllers\KeluargaKkController;
 
 
 Route::get('/', function () {
-    return view('guest.pages.home');
+    return view('welcome');
 })->name('home');
 
 // Halaman Tentang
+
 Route::get('/about', function () {
     return view('guest.pages.about');
-})->name('about');
+})->name('guest.pages.about');
+
 
 // Halaman Layanan
 Route::get('/layanan', function () {
     return view('guest.pages.layanan');
-})->name('layanan');
+})->name('guest.pages.layanan');;
 
 // Halaman Kontak
 Route::get('/kontak', function () {
     return view('guest.pages.kontak');
-})->name('kontak');
+})->name('guest.pages.kontak');;
 
 Route::get('/keluarga', [KeluargaController::class, 'index']);
 
@@ -37,5 +39,8 @@ Route::resource('kependudukan', KeluargaKkController::class);
 
 Route::get('login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login.post');
+Route::get('/login', function () {
+    return view('guest.auth.login');
+})->name('guest.auth.login');
 
 Route::resource('user', UserController::class);

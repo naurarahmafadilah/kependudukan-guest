@@ -52,7 +52,7 @@
 
     <div class="text-end">
       <button type="submit" class="btn btn-warning">Perbarui</button>
-      <a href="{{ route('keluarga.index') }}" class="btn btn-secondary">Kembali</a>
+      <a href="{{ route('kependudukan.index') }}" class="btn btn-secondary">Kembali</a>
     </div>
   </form>
 </div>

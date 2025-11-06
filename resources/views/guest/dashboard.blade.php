@@ -22,14 +22,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 
     <!-- Libraries Stylesheet -->
-    <link href="{{ asset('assets-guest/lib/animate/animate.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('assets-guest/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets-guest/lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets-guest/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{{ asset('assets-guest/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets-guest/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="{{ asset('assets-guest/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets-guest/css/style.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -67,40 +67,66 @@
 
 
     <!-- Navbar Start -->
-    <div class="container-fluid sticky-top">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white py-lg-0 px-lg-3">
-                <a href="index.html" class="navbar-brand d-lg-none">
-                    <h1 class="text-primary m-0">Data<span class="text-dark">Kependudukan</span></h1>
-                </a>
-                <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav">
-                        <a href="{{ route('dashboard') }}" class="nav-item nav-link active">Dashboard</a>
-                        <a href="{{ route('warga.index') }}" class="nav-item nav-link">Data Warga</a>
-                        <a href="{{ route('kependudukan.index') }}" class="nav-item nav-link">Data Keluarga</a>
-                        <a href="{{ route('user.index') }}" class="nav-item nav-link">Data User</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu bg-light m-0">
-                                <a href="feature.html" class="dropdown-item">Features</a>
-                                <a href="team.html" class="dropdown-item">Our Team</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="appoinment.html" class="dropdown-item">Appoinment</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div>
+<div class="container-fluid sticky-top shadow-sm bg-white">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-lg-0 px-lg-3">
+            <a href="{{ route('dashboard') }}" class="navbar-brand d-lg-none">
+                <h1 class="text-primary m-0">Data<span class="text-dark">Kependudukan</span></h1>
+            </a>
+
+            <!-- Button Toggler -->
+            <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Menu -->
+            <div class="collapse navbar-collapse justify-content-center" id="navbarCollapse">
+                <div class="navbar-nav d-flex align-items-center text-center">
+
+                    <!-- Dashboard -->
+                    <a href="{{ route('dashboard') }}" class="nav-item nav-link {{ Request::routeIs('dashboard') ? 'text-primary fw-semibold' : 'text-dark' }}">
+                        <i class="bi bi-bar-chart-fill me-2 text-primary"></i> Dashboard
+                    </a>
+
+                    <!-- Data Warga -->
+                    <a href="{{ route('warga.index') }}" class="nav-item nav-link {{ Request::routeIs('warga.*') ? 'text-success fw-semibold' : 'text-dark' }}">
+                        <i class="bi bi-people-fill me-2 text-success"></i> Data Warga
+                    </a>
+
+                    <!-- Data Keluarga -->
+                    <a href="{{ route('kependudukan.index') }}" class="nav-item nav-link {{ Request::routeIs('kependudukan.*') ? 'text-warning fw-semibold' : 'text-dark' }}">
+                        <i class="bi bi-house-heart-fill me-2 text-warning"></i> Data Keluarga
+                    </a>
+
+                    <!-- Data User -->
+                    <a href="{{ route('user.index') }}" class="nav-item nav-link {{ Request::routeIs('user.*') ? 'text-danger fw-semibold' : 'text-dark' }}">
+                        <i class="bi bi-person-badge-fill me-2 text-danger"></i> Data User
+                    </a>
+
+                    <!-- Dropdown Pages -->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle stylish-dropdown {{ Request::routeIs('guest.pages.*') ? 'text-primary fw-semibold' : 'text-dark' }}" data-bs-toggle="dropdown">
+                            <i class="bi bi-folder-fill me-2 text-secondary"></i> About
+                        </a>
+                        <div class="dropdown-menu shadow-lg border-0 rounded-3 animate-dropdown">
+                            <a href="{{ route('guest.pages.about') }}" class="dropdown-item cool-item {{ Request::routeIs('guest.pages.about') ? 'text-primary fw-semibold' : 'text-dark' }}">
+                                <i class="bi bi-info-square-fill me-2 text-primary"></i> Tentang
+                            </a>
+                            <a href="{{ route('guest.pages.layanan') }}" class="dropdown-item cool-item {{ Request::routeIs('guest.pages.layanan') ? 'text-success fw-semibold' : 'text-dark' }}">
+                                <i class="bi bi-sliders2-vertical me-2 text-success"></i> Layanan
+                            </a>
+                            <a href="{{ route('guest.pages.kontak') }}" class="dropdown-item cool-item {{ Request::routeIs('guest.pages.kontak') ? 'text-danger fw-semibold' : 'text-dark' }}">
+                                <i class="bi bi-envelope-paper-fill me-2 text-danger"></i> Kontak
+                            </a>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
-                    </div>
                     </div>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </div>
-    <!-- Navbar End -->
+</div>
+<!-- Navbar End -->
+
 
 
     <!-- Carousel Start -->
@@ -108,37 +134,41 @@
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="{{ asset('assets-guest/img/carousel-1.jpg')}}" alt="Image">
+                    <img class="w-100" src="{{ asset('assets-guest/img/desa.jpg') }}" alt="Image">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-start">
                                 <div class="col-lg-7 text-start">
-                                    <h1 class="display-1 text-white animated slideInRight mb-3">Selamat Datang di Data Kependudukan</h1>
-                                    <a href="" class="btn btn-primary py-3 px-5 animated slideInRight">Explore More</a>
+                                    <h1 class="display-1 text-white animated slideInRight mb-3">Selamat Datang di Data
+                                        Kependudukan</h1>
+                                    <a href="{{ route('guest.pages.about') }}" class="btn btn-primary py-3 px-5 animated slideInLeft">About Here!</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="{{ asset('assets-guest/img/carousel-2.jpg')}}" alt="Image">
+                    <img class="w-100" src="{{ asset('assets-guest/img/desa2.jpg') }}" alt="Image">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-end">
                                 <div class="col-lg-7 text-end">
                                     <h1 class="display-1 text-white animated slideInLeft mb-3">Data Kependudukan</h1>
-                                    <a href="" class="btn btn-primary py-3 px-5 animated slideInLeft">Explore More</a>
+                                    <a href="{{ route('kependudukan.index') }}" class="btn btn-primary py-3 px-5 animated slideInLeft">Explore
+                                        More</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -154,16 +184,17 @@
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="row g-0">
                         <div class="col-6">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/about-1.jpg')}}">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/about-1.jpg') }}">
                         </div>
                         <div class="col-6">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/about-2.jpg')}}">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/about-2.jpg') }}">
                         </div>
                         <div class="col-6">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/about-3.jpg')}}">
+                            <img class="img-fluid" src="{{ asset('assets-guest/img/about-3.jpg') }}">
                         </div>
                         <div class="col-6">
-                            <div class="bg-primary w-100 h-100 mt-n5 ms-n5 d-flex flex-column align-items-center justify-content-center">
+                            <div
+                                class="bg-primary w-100 h-100 mt-n5 ms-n5 d-flex flex-column align-items-center justify-content-center">
                                 <div class="icon-box-light">
                                     <i class="bi bi-award text-dark"></i>
                                 </div>
@@ -175,7 +206,9 @@
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <h1 class="display-6 mb-4">Trusted Lab Experts and Latest Lab Technologies</h1>
-                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat augue.</p>
+                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
+                        iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu
+                        quis, fringilla risus. Pellentesque eu consequat augue.</p>
                     <div class="row g-4 g-sm-5 justify-content-center">
                         <div class="col-sm-6">
                             <div class="about-fact btn-square flex-column rounded-circle bg-primary ms-sm-auto">
@@ -213,7 +246,8 @@
                             <i class="bi bi-award text-dark"></i>
                         </div>
                         <h5 class="mb-3">Award Winning</h5>
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
+                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                            augue.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
@@ -222,7 +256,8 @@
                             <i class="bi bi-people text-dark"></i>
                         </div>
                         <h5 class="mb-3">Expet Doctors</h5>
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
+                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                            augue.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
@@ -231,7 +266,8 @@
                             <i class="bi bi-cash-coin text-dark"></i>
                         </div>
                         <h5 class="mb-3">Fair Prices</h5>
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
+                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                            augue.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
@@ -240,7 +276,8 @@
                             <i class="bi bi-headphones text-dark"></i>
                         </div>
                         <h5 class="mb-3">24/7 Support</h5>
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
+                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                            augue.</p>
                     </div>
                 </div>
             </div>
@@ -255,8 +292,12 @@
             <div class="row g-0">
                 <div class="col-lg-6 pt-lg-5">
                     <div class="bg-white p-5 mt-lg-5">
-                        <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.3s">The Best Medical Test & Laboratory Solution</h1>
-                        <p class="mb-4 wow fadeIn" data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat augue.</p>
+                        <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.3s">The Best Medical Test & Laboratory
+                            Solution</h1>
+                        <p class="mb-4 wow fadeIn" data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor.
+                            Quisque vel lorem porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat
+                            augue.</p>
                         <div class="row g-5 pt-2 mb-5">
                             <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
                                 <div class="icon-box-primary mb-4">
@@ -273,7 +314,8 @@
                                 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
                             </div>
                         </div>
-                        <a class="btn btn-primary py-3 px-5 wow fadeIn" data-wow-delay="0.5s" href="">Explore More</a>
+                        <a class="btn btn-primary py-3 px-5 wow fadeIn" data-wow-delay="0.5s" href="">Explore
+                            More</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -294,7 +336,8 @@
                                         <span class="text-white">90%</span>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="90"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                                 <div class="experience mb-4 wow fadeIn" data-wow-delay="0.4s">
@@ -303,7 +346,8 @@
                                         <span class="text-white">95%</span>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="95"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                                 <div class="experience mb-0 wow fadeIn" data-wow-delay="0.5s">
@@ -312,7 +356,8 @@
                                         <span class="text-white">90%</span>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="90"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
@@ -352,7 +397,8 @@
         <div class="container pt-5">
             <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
                 <h1 class="display-6 mb-3">Reliable & High-Quality Laboratory Service</h1>
-                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor.</p>
+                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
+                    iaculis id elit eget, ultrices pulvinar tortor.</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -361,8 +407,10 @@
                             <i class="bi bi-heart-pulse text-dark"></i>
                         </div>
                         <h5 class="mb-3">Pathology Testing</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
-                        <a class="btn btn-light px-3" href="">Read More<i class="bi bi-chevron-double-right ms-1"></i></a>
+                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                                augue.</p>
+                            <a class="btn btn-light px-3" href="">Read More<i
+                                    class="bi bi-chevron-double-right ms-1"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -371,8 +419,10 @@
                             <i class="bi bi-lungs text-dark"></i>
                         </div>
                         <h5 class="mb-3">Microbiology Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
-                        <a class="btn btn-light px-3" href="">Read More<i class="bi bi-chevron-double-right ms-1"></i></a>
+                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                                augue.</p>
+                            <a class="btn btn-light px-3" href="">Read More<i
+                                    class="bi bi-chevron-double-right ms-1"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -381,8 +431,10 @@
                             <i class="bi bi-virus text-dark"></i>
                         </div>
                         <h5 class="mb-3">Biochemistry Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
-                        <a class="btn btn-light px-3" href="">Read More<i class="bi bi-chevron-double-right ms-1"></i></a>
+                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                                augue.</p>
+                            <a class="btn btn-light px-3" href="">Read More<i
+                                    class="bi bi-chevron-double-right ms-1"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
@@ -391,8 +443,10 @@
                             <i class="bi bi-capsule-pill text-dark"></i>
                         </div>
                         <h5 class="mb-3">Histopatology Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
-                        <a class="btn btn-light px-3" href="">Read More<i class="bi bi-chevron-double-right ms-1"></i></a>
+                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                                augue.</p>
+                            <a class="btn btn-light px-3" href="">Read More<i
+                                    class="bi bi-chevron-double-right ms-1"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -401,8 +455,10 @@
                             <i class="bi bi-capsule text-dark"></i>
                         </div>
                         <h5 class="mb-3">Urine Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
-                        <a class="btn btn-light px-3" href="">Read More<i class="bi bi-chevron-double-right ms-1"></i></a>
+                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                                augue.</p>
+                            <a class="btn btn-light px-3" href="">Read More<i
+                                    class="bi bi-chevron-double-right ms-1"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -411,8 +467,10 @@
                             <i class="bi bi-prescription2 text-dark"></i>
                         </div>
                         <h5 class="mb-3">Blood Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
-                        <a class="btn btn-light px-3" href="">Read More<i class="bi bi-chevron-double-right ms-1"></i></a>
+                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                                augue.</p>
+                            <a class="btn btn-light px-3" href="">Read More<i
+                                    class="bi bi-chevron-double-right ms-1"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -421,8 +479,10 @@
                             <i class="bi bi-clipboard2-pulse text-dark"></i>
                         </div>
                         <h5 class="mb-3">Fever Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
-                        <a class="btn btn-light px-3" href="">Read More<i class="bi bi-chevron-double-right ms-1"></i></a>
+                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                                augue.</p>
+                            <a class="btn btn-light px-3" href="">Read More<i
+                                    class="bi bi-chevron-double-right ms-1"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
@@ -431,8 +491,10 @@
                             <i class="bi bi-file-medical text-dark"></i>
                         </div>
                         <h5 class="mb-3">Allergy Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue.</p>
-                        <a class="btn btn-light px-3" href="">Read More<i class="bi bi-chevron-double-right ms-1"></i></a>
+                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                                augue.</p>
+                            <a class="btn btn-light px-3" href="">Read More<i
+                                    class="bi bi-chevron-double-right ms-1"></i></a>
                     </div>
                 </div>
             </div>
@@ -447,8 +509,11 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <h1 class="display-6 mb-4">We Ensure You Will Always Get The Best Result</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat augue.</p>
-                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit
+                        eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu quis, fringilla
+                        risus. Pellentesque eu consequat augue.</p>
+                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
+                        iaculis id elit eget, ultrices pulvinar tortor.</p>
                     <div class="d-flex align-items-start wow fadeIn" data-wow-delay="0.3s">
                         <div class="icon-box-primary">
                             <i class="bi bi-geo-alt text-dark fs-1"></i>
@@ -503,8 +568,7 @@
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a message here" id="message"
-                                    style="height: 130px"></textarea>
+                                <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 130px"></textarea>
                                 <label for="message">Message</label>
                             </div>
                         </div>
@@ -531,13 +595,21 @@
                     <p class="mb-1">CEO & Founder</p>
                     <p class="mb-5">Labsky, New York, USA</p>
                     <h3 class="mb-3">Biography</h3>
-                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat augue.</p>
-                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat augue.</p>
+                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
+                        iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu
+                        quis, fringilla risus. Pellentesque eu consequat augue.</p>
+                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
+                        iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu
+                        quis, fringilla risus. Pellentesque eu consequat augue.</p>
                     <div class="d-flex">
-                        <a class="btn btn-lg-square btn-primary me-2" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-lg-square btn-primary me-2" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-lg-square btn-primary me-2" href=""><i class="fab fa-linkedin-in"></i></a>
-                        <a class="btn btn-lg-square btn-primary me-2" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-lg-square btn-primary me-2" href=""><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-lg-square btn-primary me-2" href=""><i
+                                class="fab fa-twitter"></i></a>
+                        <a class="btn btn-lg-square btn-primary me-2" href=""><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-lg-square btn-primary me-2" href=""><i
+                                class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
@@ -547,10 +619,14 @@
                         <div class="position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
                             <div class="team-social">
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-youtube"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-youtube"></i></a>
                             </div>
                         </div>
                         <div class="text-center p-4">
@@ -564,10 +640,14 @@
                         <div class="position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
                             <div class="team-social">
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-youtube"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-youtube"></i></a>
                             </div>
                         </div>
                         <div class="text-center p-4">
@@ -581,10 +661,14 @@
                         <div class="position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/team-4.jpg" alt="">
                             <div class="team-social">
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-youtube"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-youtube"></i></a>
                             </div>
                         </div>
                         <div class="text-center p-4">
@@ -598,10 +682,14 @@
                         <div class="position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/team-5.jpg" alt="">
                             <div class="team-social">
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i class="fab fa-youtube"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-square btn-light mx-1" href=""><i
+                                        class="fab fa-youtube"></i></a>
                             </div>
                         </div>
                         <div class="text-center p-4">
@@ -622,7 +710,8 @@
             <div class="row gy-5 gx-0">
                 <div class="col-lg-6 pe-lg-5 wow fadeIn" data-wow-delay="0.3s">
                     <h1 class="display-6 text-white mb-4">What Clients Say About Our Lab Services!</h1>
-                    <p class="text-white mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor.</p>
+                    <p class="text-white mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+                        tellus augue, iaculis id elit eget, ultrices pulvinar tortor.</p>
                     <a href="" class="btn btn-primary py-3 px-5">More Testimonials</a>
                 </div>
                 <div class="col-lg-6 mb-n5 wow fadeIn" data-wow-delay="0.5s">
@@ -632,7 +721,10 @@
                                 <div class="icon-box-primary mb-4">
                                     <i class="bi bi-chat-left-quote text-dark"></i>
                                 </div>
-                                <p class="fs-5 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat augue.</p>
+                                <p class="fs-5 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+                                    tellus augue, iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem
+                                    porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat augue.
+                                </p>
                                 <div class="d-flex align-items-center">
                                     <img class="flex-shrink-0" src="img/testimonial-1.jpg" alt="">
                                     <div class="ps-3">
@@ -645,7 +737,10 @@
                                 <div class="icon-box-primary mb-4">
                                     <i class="bi bi-chat-left-quote text-dark"></i>
                                 </div>
-                                <p class="fs-5 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat augue.</p>
+                                <p class="fs-5 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+                                    tellus augue, iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem
+                                    porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat augue.
+                                </p>
                                 <div class="d-flex align-items-center">
                                     <img class="flex-shrink-0" src="img/testimonial-2.jpg" alt="">
                                     <div class="ps-3">
@@ -671,15 +766,20 @@
                     <a href="index.html" class="navbar-brand">
                         <h1 class="h1 text-primary mb-0">Lab<span class="text-white">sky</span></h1>
                     </a>
-                    <p class="fs-5 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor.</p>
+                    <p class="fs-5 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
+                        augue, iaculis id elit eget, ultrices pulvinar tortor.</p>
                     <p><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</p>
                     <p><i class="fa fa-phone-alt me-2"></i>+012 345 67890</p>
                     <p><i class="fa fa-envelope me-2"></i>info@example.com</p>
                     <div class="d-flex mt-4">
-                        <a class="btn btn-lg-square btn-primary me-2" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-lg-square btn-primary me-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-lg-square btn-primary me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="btn btn-lg-square btn-primary me-2" href="#"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-lg-square btn-primary me-2" href="#"><i
+                                class="fab fa-twitter"></i></a>
+                        <a class="btn btn-lg-square btn-primary me-2" href="#"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-lg-square btn-primary me-2" href="#"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-lg-square btn-primary me-2" href="#"><i
+                                class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-6 ps-lg-5">
@@ -704,7 +804,10 @@
                             <h4 class="text-light mb-4">Newsletter</h4>
                             <div class="w-100">
                                 <div class="input-group">
-                                    <input type="text" class="form-control border-0 py-3 px-4" style="background: rgba(255, 255, 255, .1);" placeholder="Your Email Address"><button class="btn btn-primary px-4">Sign Up</button>
+                                    <input type="text" class="form-control border-0 py-3 px-4"
+                                        style="background: rgba(255, 255, 255, .1);"
+                                        placeholder="Your Email Address"><button class="btn btn-primary px-4">Sign
+                                        Up</button>
                                 </div>
                             </div>
                         </div>
@@ -734,20 +837,21 @@
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
+            class="bi bi-arrow-up"></i></a>
 
 
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('assets-guest/lib/wow/wow.min.js')}}"></script>
-    <script src="{{ asset('assets-guest/lib/easing/easing.min.js')}}"></script>
-    <script src="{{ asset('assets-guest/lib/waypoints/waypoints.min.js')}}"></script>
-    <script src="{{ asset('assets-guest/lib/counterup/counterup.min.js')}}"></script>
-    <script src="{{ asset('assets-guest/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('assets-guest/lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('assets-guest/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('assets-guest/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets-guest/lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ asset('assets-guest/lib/owlcarousel/owl.carousel.min.js') }}"></script>
 
     <!-- Template Javascript -->
-    <script src="{{ asset('assets-guest/js/main.js')}}"></script>
+    <script src="{{ asset('assets-guest/js/main.js') }}"></script>
 
 </body>
 
