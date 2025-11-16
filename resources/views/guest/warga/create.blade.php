@@ -5,13 +5,13 @@
   <h2 class="text-center mb-4 text-primary fw-bold">Tambah Data Warga</h2>
 
   @if($errors->any())
-    <div class="alert alert-danger">
-      <ul class="mb-0">
-        @foreach($errors->all() as $error)
-          <li>{{ $error }}</li>
-        @endforeach
-      </ul>
-    </div>
+  <div class="alert alert-danger">
+    <ul class="mb-0">
+      @foreach($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
   @endif
 
   <form action="{{ route('warga.store') }}" method="POST" class="card shadow p-4 border-0 rounded-4">
@@ -38,8 +38,18 @@
 
     <div class="mb-3">
       <label class="form-label">Agama</label>
-      <input type="text" name="agama" class="form-control" value="{{ old('agama') }}">
+      <select name="agama" class="form-select">
+        <option value="">-- Pilih Agama --</option>
+        <option value="Islam" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
+        <option value="Kristen" {{ old('agama') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+        <option value="Katolik" {{ old('agama') == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+        <option value="Hindu" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+        <option value="Buddha" {{ old('agama') == 'Buddha' ? 'selected' : '' }}>Buddha</option>
+        <option value="Konghucu" {{ old('agama') == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
+        <option value="Lainnya" {{ old('agama') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+      </select>
     </div>
+
 
     <div class="mb-3">
       <label class="form-label">Pekerjaan</label>

@@ -56,9 +56,14 @@
                         <i class="bi bi-house-heart-fill me-2 text-warning"></i> Data Keluarga
                     </a>
 
+                    <!-- Data Anggota Keluarga -->
+                    <a href="{{ route('anggota-keluarga.index') }}" class="nav-item nav-link {{ Request::routeIs('anggota-keluarga.*') ? 'text-info fw-semibold' : 'text-dark' }}">
+                        <i class="bi bi-people-fill me-2 text-info"></i> Anggota Keluarga
+                    </a>
+
                     <!-- Data User -->
                     <a href="{{ route('user.index') }}" class="nav-item nav-link {{ Request::routeIs('user.*') ? 'text-danger fw-semibold' : 'text-dark' }}">
-                        <i class="bi bi-person-badge-fill me-2 text-danger"></i> Data User
+                        <i class="bi bi-person-badge-fill me-2 text-danger"></i> User
                     </a>
 
                     <!-- Dropdown Pages -->
@@ -84,4 +89,3 @@
     </div>
 </div>
 <!-- Navbar End -->
-
