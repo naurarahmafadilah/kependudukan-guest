@@ -21,7 +21,7 @@ class KeluargaKkAnggotaSeeder extends Seeder
 
         $faker = Faker::create('id_ID');  // → Nama Indonesia
 
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
 
             // 🧍‍♂ Buat nama kepala keluarga (laki-laki)
             $namaKepala = $faker->name('male');
