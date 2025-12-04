@@ -1,15 +1,14 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class AnggotaKeluarga extends Model
 {
-    protected $table = 'anggota_keluarga';
+    protected $table      = 'anggota_keluarga';
     protected $primaryKey = 'anggota_id';
-    public $incrementing = true;
-    protected $keyType = 'int';
+    public $incrementing  = true;
+    protected $keyType    = 'int';
 
     protected $fillable = [
         'kk_id',
@@ -25,5 +24,43 @@ class AnggotaKeluarga extends Model
     public function warga()
     {
         return $this->belongsTo(Warga::class, 'warga_id', 'warga_id');
+    }
+
+    public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder
+    {
+        foreach ($filterableColumns as $column) {
+            if ($request->filled($column)) {
+                $query->where($column, $request->input($column));
+            }
+        }
+        return $query;
+    }
+
+    /**
+     * Scope: search (LIKE) across columns (support relasi via dot-notation)
+     * Sesuai modul (scopeSearch)
+     */
+    public function scopeSearch(Builder $query, $request, array $columns): Builder
+    {
+        if (! $request->filled('search')) {
+            return $query;
+        }
+
+        $kw = $request->input('search');
+
+        $query->where(function ($q) use ($columns, $kw) {
+            foreach ($columns as $col) {
+                if (strpos($col, '.') !== false) {
+                    [$rel, $relCol] = explode('.', $col, 2);
+                    $q->orWhereHas($rel, function ($qr) use ($relCol, $kw) {
+                        $qr->where($relCol, 'LIKE', "%{$kw}%");
+                    });
+                } else {
+                    $q->orWhere($col, 'LIKE', "%{$kw}%");
+                }
+            }
+        });
+
+        return $query;
     }
 }
