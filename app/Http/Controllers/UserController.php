@@ -12,10 +12,12 @@ class UserController extends Controller
     {
 
         $searchable = ['name', 'email'];
+        $filterable = ['role'];
 
-       $user = User::search($request, $searchable)
-        ->latest()
-        ->paginate(12);
+        $user = User::search($request, $searchable)
+            ->filter($request, $filterable)
+            ->latest()
+            ->paginate(12);
 
         return view('guest.user.index', compact('user'));
     }
@@ -30,15 +32,18 @@ class UserController extends Controller
         $request->validate([
             'name'      => 'required|string|max:100',
             'email'     => 'required|email|unique:users,email',
+            'role'      => 'required|in:admin,operator,rt', // ✅ Validasi role
             'password'  => 'required|min:8|confirmed',
         ]);
 
         $data = $request->all();
         $data['password'] = Hash::make($request->password);
+
         User::create($data);
 
         return redirect()->route('user.index')->with('success', 'Data user berhasil ditambahkan!');
     }
+
 
     public function edit($id)
     {
@@ -53,6 +58,7 @@ class UserController extends Controller
         $rules = [
             'name'  => 'required|string|max:100',
             'email' => 'required|email|unique:users,email,' . $user->id,
+            'role'  => 'required|in:admin,operator,rt', // ✅ Tambah validasi role
         ];
 
         if ($request->filled('password')) {
@@ -62,6 +68,7 @@ class UserController extends Controller
         $request->validate($rules);
 
         $data = $request->all();
+
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);
         } else {
@@ -69,8 +76,10 @@ class UserController extends Controller
         }
 
         $user->update($data);
+
         return redirect()->route('user.index')->with('success', 'Data user berhasil diperbarui!');
     }
+
 
     public function destroy($id)
     {

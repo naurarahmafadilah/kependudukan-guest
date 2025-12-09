@@ -70,129 +70,124 @@
     <div class="container-fluid sticky-top shadow-sm bg-white">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-white py-lg-0 px-lg-3">
+
+                <!-- BRAND MOBILE -->
                 <a href="{{ route('dashboard') }}" class="navbar-brand d-lg-none">
                     <h1 class="text-primary m-0">Data<span class="text-dark">Kependudukan</span></h1>
                 </a>
 
-                <!-- Button Toggler -->
-                <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse">
+                <!-- Toggle Responsive -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Navbar Menu -->
-                <div class="collapse navbar-collapse justify-content-center" id="navbarCollapse">
-                    <div class="navbar-nav d-flex align-items-center text-center">
+                <!-- Navbar Content -->
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+
+                    <div class="navbar-nav mx-auto d-flex align-items-center text-center gap-2">
 
                         <!-- Dashboard -->
                         <a href="{{ route('dashboard') }}"
-                            class="nav-item nav-link {{ Request::routeIs('dashboard') ? 'text-primary fw-semibold' : 'text-dark' }}">
-                            <i class="bi bi-bar-chart-fill me-2 text-primary"></i> Dashboard
+                            class="nav-item nav-link d-flex align-items-center 
+                       {{ Request::routeIs('dashboard') ? 'text-primary fw-semibold' : 'text-dark' }}">
+                            <i class="bi bi-bar-chart-fill me-1 text-primary"></i> Dashboard
                         </a>
 
-                        <!-- Data Warga -->
+                        <!-- Warga -->
                         <a href="{{ route('warga.index') }}"
-                            class="nav-item nav-link {{ Request::routeIs('warga.*') ? 'text-success fw-semibold' : 'text-dark' }}">
-                            <i class="bi bi-people-fill me-2 text-success"></i> Warga
+                            class="nav-item nav-link d-flex align-items-center 
+                       {{ Request::routeIs('warga.*') ? 'text-success fw-semibold' : 'text-dark' }}">
+                            <i class="bi bi-people-fill me-1 text-success"></i> Warga
                         </a>
 
-                        <!-- Data Keluarga -->
+                        <!-- Keluarga -->
                         <a href="{{ route('kependudukan.index') }}"
-                            class="nav-item nav-link {{ Request::routeIs('kependudukan.*') ? 'text-warning fw-semibold' : 'text-dark' }}">
-                            <i class="bi bi-house-heart-fill me-2 text-warning"></i> Keluarga
+                            class="nav-item nav-link d-flex align-items-center 
+                       {{ Request::routeIs('kependudukan.*') ? 'text-warning fw-semibold' : 'text-dark' }}">
+                            <i class="bi bi-house-heart-fill me-1 text-warning"></i> Keluarga
                         </a>
 
-                        <!-- Data Anggota -->
+                        <!-- Anggota -->
                         <a href="{{ route('anggota-keluarga.index') }}"
-                            class="nav-item nav-link {{ Request::routeIs('anggota-keluarga.*') ? 'text-info fw-semibold' : 'text-dark' }}">
-                            <i class="bi bi-people-fill me-2 text-info"></i> Anggota Keluarga
+                            class="nav-item nav-link d-flex align-items-center 
+                       {{ Request::routeIs('anggota-keluarga.*') ? 'text-info fw-semibold' : 'text-dark' }}">
+                            <i class="bi bi-people-fill me-1 text-info"></i> Anggota
                         </a>
 
-                        <!-- Data User -->
+                        <!-- User -->
                         <a href="{{ route('user.index') }}"
-                            class="nav-item nav-link {{ Request::routeIs('user.*') ? 'text-danger fw-semibold' : 'text-dark' }}">
-                            <i class="bi bi-person-badge-fill me-2 text-danger"></i> User
+                            class="nav-item nav-link d-flex align-items-center 
+                       {{ Request::routeIs('user.*') ? 'text-danger fw-semibold' : 'text-dark' }}">
+                            <i class="bi bi-person-badge-fill me-1 text-danger"></i> User
                         </a>
 
-                        <!-- PERISTIWA DROPDOWN -->
+                        <!-- Peristiwa Dropdown -->
                         <div class="nav-item dropdown">
-                            <a href="#"
-                                class="nav-link dropdown-toggle stylish-dropdown 
-        {{ Request::routeIs('kelahiran.*') || Request::routeIs('kematian.*') || Request::routeIs('pindah.*')
-            ? 'text-primary fw-semibold' : 'text-dark' }}"
+                            <a href="#" class="nav-link dropdown-toggle stylish-dropdown
+                           {{ Request::routeIs('kelahiran.*') || Request::routeIs('kematian.*') || Request::routeIs('pindah.*')
+                               ? 'text-primary fw-semibold' : 'text-dark' }}"
                                 data-bs-toggle="dropdown">
-                                <i class="bi bi-calendar-event-fill me-2 text-primary"></i> Peristiwa
+                                <i class="bi bi-calendar-event-fill me-1 text-primary"></i> Peristiwa
                             </a>
 
                             <div class="dropdown-menu shadow-lg border-0 rounded-3 animate-dropdown">
-
-                                <!-- Kelahiran -->
-                                <a href="{{ route('kelahiran.index') }}"
-                                    class="dropdown-item cool-item {{ Request::routeIs('kelahiran.*') ? 'text-success fw-semibold' : 'text-dark' }}">
-                                    <i class="bi bi-person-hearts me-2 text-success"></i> Kelahiran
-                                </a>
-
-                                <!-- Kematian -->
-                                <a href="{{ route('kematian.index') }}"
-                                    class="dropdown-item cool-item {{ Request::routeIs('kematian.*') ? 'text-danger fw-semibold' : 'text-dark' }}">
-                                    <i class="bi bi-emoji-dizzy-fill me-2 text-danger"></i> Kematian
-                                </a>
-
-                                <!-- Pindah -->
-                                <a href="{{ route('pindah.index') }}"
-                                    class="dropdown-item cool-item {{ Request::routeIs('pindah.*') ? 'text-warning fw-semibold' : 'text-dark' }}">
-                                    <i class="bi bi-truck-front-fill me-2 text-warning"></i> Pindah Domisili
-                                </a>
-
+                                <a href="{{ route('kelahiran.index') }}" class="dropdown-item">Kelahiran</a>
+                                <a href="{{ route('kematian.index') }}" class="dropdown-item">Kematian</a>
+                                <a href="{{ route('pindah.index') }}" class="dropdown-item">Pindah Domisili</a>
                             </div>
                         </div>
 
-
-
-                        <!-- ABOUT DROPDOWN -->
-                        <div class="nav-item dropdown ms-1">
-                            <a href="#"
-                                class="nav-link dropdown-toggle stylish-dropdown {{ Request::routeIs('guest.pages.*') ? 'text-primary fw-semibold' : 'text-dark' }}"
+                        <!-- About Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle stylish-dropdown
+                           {{ Request::routeIs('guest.pages.*') ? 'text-primary fw-semibold' : 'text-dark' }}"
                                 data-bs-toggle="dropdown">
-                                <i class="bi bi-folder-fill me-2 text-secondary"></i> About
+                                <i class="bi bi-folder-fill me-1 text-secondary"></i> About
                             </a>
+
                             <div class="dropdown-menu shadow-lg border-0 rounded-3 animate-dropdown">
-                                <a href="{{ route('guest.pages.about') }}"
-                                    class="dropdown-item cool-item {{ Request::routeIs('guest.pages.about') ? 'text-primary fw-semibold' : 'text-dark' }}">
-                                    <i class="bi bi-info-square-fill me-2 text-primary"></i> Tentang
-                                </a>
-
-                                <a href="{{ route('guest.pages.layanan') }}"
-                                    class="dropdown-item cool-item {{ Request::routeIs('guest.pages.layanan') ? 'text-success fw-semibold' : 'text-dark' }}">
-                                    <i class="bi bi-sliders2-vertical me-2 text-success"></i> Layanan
-                                </a>
-
-                                <a href="{{ route('guest.pages.kontak') }}"
-                                    class="dropdown-item cool-item {{ Request::routeIs('guest.pages.kontak') ? 'text-danger fw-semibold' : 'text-dark' }}">
-                                    <i class="bi bi-envelope-paper-fill me-2 text-danger"></i> Kontak
-                                </a>
+                                <a href="{{ route('guest.pages.about') }}" class="dropdown-item">Tentang</a>
+                                <a href="{{ route('guest.pages.layanan') }}" class="dropdown-item">Layanan</a>
+                                <a href="{{ route('guest.pages.kontak') }}" class="dropdown-item">Kontak</a>
                             </div>
+                        </div>
+
+                        <!-- USER NAVBAR DROPDOWN (DISEMPETKAN DI SAMPING ABOUT) -->
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle stylish-dropdown d-flex align-items-center"
+                                data-bs-toggle="dropdown">
+                                <img src="https://i.pravatar.cc/40" class="rounded-circle me-1 shadow-sm" width="34" height="34">
+                                <span class="fw-semibold text-dark">{{ Auth::user()->name }}</span>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-0"
+                                style="width: 220px; overflow: hidden;">
+                                <li class="p-3 bg-light border-bottom">
+                                    <div class="fw-semibold">{{ Auth::user()->name }}</div>
+                                    <small class="text-muted">Login: {{ session('login_time') }}</small>
+                                </li>
+                                <li><a class="dropdown-item py-2" href="#">My Profile</a></li>
+                                <li><a class="dropdown-item py-2" href="#">Settings</a></li>
+                                <li><a class="dropdown-item py-2" href="#">Messages</a></li>
+                                <li>
+                                    <hr class="dropdown-divider my-1">
+                                </li>
+                                <li><a class="dropdown-item text-danger fw-semibold py-2" href="{{ route('logout') }}">Logout</a></li>
+                            </ul>
                         </div>
 
                     </div>
                 </div>
-                <!-- Navbar End -->
-
-
-
+            </nav>
         </div>
-    </div>
-    </div>
-    </div>
-    </nav>
-    </div>
     </div>
     <!-- Navbar End -->
 
 
 
+
     <!-- Carousel Start -->
-    <div class="container-fluid header-carousel px-0 mb-5">
+    <div class=" container-fluid header-carousel px-0 mb-5">
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">

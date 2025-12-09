@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-class User extends Model
+class User extends Authenticatable
 {
     use HasFactory;
 
@@ -15,13 +15,15 @@ class User extends Model
         'name',
         'email',
         'password',
+        'role',
     ];
 
-    public function scopeFilter(Builder $query, $request, array $columns)
+    // === GENERAL FILTER (seperti Warga) ===
+    public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder
     {
-        foreach ($columns as $col) {
-            if ($request->filled($col)) {
-                $query->where($col, $request->$col);
+        foreach ($filterableColumns as $column) {
+            if ($request->filled($column)) {
+                $query->where($column, $request->input($column));
             }
         }
         return $query;

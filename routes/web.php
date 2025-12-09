@@ -17,11 +17,9 @@ Route::get('/', function () {
 })->name('home');
 
 // Halaman Tentang
-
 Route::get('/about', function () {
     return view('guest.pages.about');
 })->name('guest.pages.about');
-
 
 // Halaman Layanan
 Route::get('/layanan', function () {
@@ -35,18 +33,42 @@ Route::get('/kontak', function () {
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::resource('warga', WargaController::class);
-Route::resource('kependudukan', KeluargaKkController::class);
-
+// ==== Login & Logout ====
 Route::get('login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login.post');
+
+// PERUBAHAN: Alias login tambahan agar middleware bisa menemukan route "login"
+Route::get('/auth/login', [AuthController::class, 'showLogin'])->name('login');
+
 Route::get('/login', function () {
     return view('guest.auth.login');
 })->name('guest.auth.login');
 
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// ==== Resource Routes ====
 Route::resource('user', UserController::class);
+Route::resource('warga', WargaController::class);
+Route::resource('kependudukan', KeluargaKkController::class);
 Route::resource('anggota-keluarga', AnggotaKeluargaController::class);
 Route::resource('kelahiran', PeristiwaKelahiranController::class);
 Route::resource('kematian', PeristiwaKematianController::class);
 Route::resource('pindah', PeristiwaPindahController::class);
 
+// ==== Middleware Proteksi Halaman ====
+Route::middleware(['checkIsLogin'])->group(function() {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+Route::middleware(['checkIsLogin', 'checkRole:admin,operator'])->group(function() {
+    Route::resource('user', UserController::class);
+});
+
+Route::middleware(['checkIsLogin', 'checkRole:admin,operator,rt'])->group(function() {
+    Route::resource('warga', WargaController::class);
+    Route::resource('kependudukan', KeluargaKkController::class);
+    Route::resource('anggota-keluarga', AnggotaKeluargaController::class);
+    Route::resource('kelahiran', PeristiwaKelahiranController::class);
+    Route::resource('kematian', PeristiwaKematianController::class);
+    Route::resource('pindah', PeristiwaPindahController::class);
+});
