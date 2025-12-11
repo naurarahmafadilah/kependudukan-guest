@@ -11,26 +11,34 @@ class FirstUserSeeder extends Seeder
 {
     public function run(): void
     {
-        // PAKSA faker pakai Indonesia
+
         $faker = FakerFactory::create('id_ID');
 
-        // Admin tetap
+        // ===================================
+        // 1. Admin Utama (Role: admin)
+        // ===================================
         User::updateOrCreate(
             ['email' => 'admin@example.com'],
             [
                 'name'     => 'Admin Utama',
                 'password' => Hash::make('password123'),
+                'role'     => 'admin',
             ]
         );
 
-        // Tambah 100 user dengan nama Indonesia
-        for ($i = 1; $i <= 100; $i++) {
-            $nama = $faker->firstName() . ' ' . $faker->lastName(); // lebih stabil Indonesia
+        // ===================================
+        // 2. Generate 100 User Random
+        // ===================================
+        $roles = ['operator', 'rt']; // role selain admin
+
+        for ($i = 1; $i <= 300; $i++) {
+            $nama = $faker->firstName() . ' ' . $faker->lastName();
 
             User::create([
                 'name'     => $nama,
                 'email'    => $faker->unique()->safeEmail(),
                 'password' => Hash::make('password123'),
+                'role'     => $faker->randomElement($roles), // role acak
             ]);
         }
     }

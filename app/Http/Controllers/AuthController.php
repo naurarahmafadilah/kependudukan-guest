@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -15,35 +14,26 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email'    => 'required|email',
-            'password' => 'required'
-        ]);
+        $credentials = $request->only('email', 'password');
 
-        $user = User::where('email', $request->email)->first();
+        if (Auth::attempt($credentials)) {
 
-        if (!$user) {
-            return back()->withErrors(['email' => 'Email tidak ditemukan'])->withInput();
+            session(['login_time' => now()->format('Y-m-d H:i:s')]);
+
+            return redirect()->route('dashboard');
         }
 
-        if (!Hash::check($request->password, $user->password)) {
-            return back()->withErrors(['password' => 'Password salah'])->withInput();
-        }
-
-        session([
-            'user_id' => $user->id,
-            'user_name' => $user->name
-        ]);
-
-        return redirect()->route('dashboard')->with('success', 'Selamat datang kembali, ' . $user->name . ' 👋');
+        return back()->withErrors(['email' => 'Email atau password salah.']);
     }
 
-    public function logout()
-    {
-        // Hapus semua data sesi login
-        session()->flush();
 
-        // Kembali ke halaman login dengan pesan sukses
-        return redirect()->route('login')->with('success', 'Anda berhasil logout. Sampai jumpa kembali 👋');
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'Berhasil logout.');
     }
 }

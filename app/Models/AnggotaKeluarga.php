@@ -1,8 +1,8 @@
 <?php
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class AnggotaKeluarga extends Model
 {
@@ -35,34 +35,6 @@ class AnggotaKeluarga extends Model
             }
         }
         return $query;
-    }
-
-
-    /**
-     * Scope: search (LIKE) across columns (support relasi via dot-notation)
-     * Sesuai modul (scopeSearch)
-     */
-    public function scopeSearch(Builder $query, $request, array $columns): Builder
-    {
-        if (! $request->filled('search')) {
-            return $query;
-        }
-
-        $kw = $request->input('search');
-
-        $query->where(function ($q) use ($columns, $kw) {
-            foreach ($columns as $col) {
-                if (strpos($col, '.') !== false) {
-                    [$rel, $relCol] = explode('.', $col, 2);
-                    $q->orWhereHas($rel, function ($qr) use ($relCol, $kw) {
-                        $qr->where($relCol, 'LIKE', "%{$kw}%");
-                    });
-                } else {
-                    $q->orWhere($col, 'LIKE', "%{$kw}%");
-                }
-            }
-        });
-
     }
 
     // 🔎 SEARCH (sesuai modul tapi aku tambahin pencarian ke relasi biar lebih berguna)

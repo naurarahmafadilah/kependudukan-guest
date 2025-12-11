@@ -30,6 +30,16 @@
                     <input type="email" name="email" value="{{ old('email', $user->email) }}" class="form-control" required>
                 </div>
 
+                {{-- ✅ Tambahkan Input Role --}}
+                <div class="mb-3">
+                    <label class="form-label">Role</label>
+                    <select name="role" class="form-control" required>
+                        <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                        <option value="operator" {{ $user->role == 'operator' ? 'selected' : '' }}>Operator</option>
+                        <option value="rt" {{ $user->role == 'rt' ? 'selected' : '' }}>Ketua RT</option>
+                    </select>
+                </div>
+
                 <div class="mb-3">
                     <label class="form-label">Password (Opsional)</label>
                     <input type="password" name="password" class="form-control" placeholder="Isi jika ingin mengganti password">
