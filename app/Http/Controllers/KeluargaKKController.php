@@ -8,9 +8,18 @@ use Illuminate\Http\Request;
 
 class KeluargaKkController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $keluarga = KeluargaKk::with('kepalaKeluarga')->latest()->get();
+        $filterableColumns = ['rt', 'rw']; // contoh: filter berdasarkan RT/RW
+        // kolom yang akan dicari pada fitur search
+        $searchableColumns = ['kk_nomor', 'alamat']; // contoh: search KK nomor atau alamat
+
+        $keluarga = KeluargaKk::with('kepalaKeluarga')
+        ->filter($request, $filterableColumns)   // scopeFilter di model
+        ->search($request, $searchableColumns)   // scopeSearch di model
+        ->latest()
+        ->paginate(10);
+        
         return view('guest.kependudukan.index', compact('keluarga'));
     }
 

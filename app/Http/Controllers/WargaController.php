@@ -7,9 +7,17 @@ use Illuminate\Http\Request;
 
 class WargaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $warga = Warga::latest()->get();
+        $filterableColumns = ['jenis_kelamin', 'agama'];
+        $searchableColumns = ['no_ktp', 'nama', 'pekerjaan', 'email'];
+
+        $warga = Warga::filter($request, $filterableColumns)   // scopeFilter di model
+            ->search($request, $searchableColumns)             // scopeSearch di model
+            ->latest()
+            ->paginate(12)                                     // misal 12 card per halaman
+            ->withQueryString(); 
+            
         return view('guest.warga.index', compact('warga'));
     }
 

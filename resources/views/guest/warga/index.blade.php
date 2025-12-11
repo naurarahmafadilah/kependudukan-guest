@@ -13,12 +13,59 @@
   </div>
   @endif
 
-  {{-- Tombol tambah --}}
-  <div class="text-end mb-4">
-    <a href="{{ route('warga.create') }}" class="btn btn-primary shadow-sm">
-      <i class="bi bi-plus-circle"></i> Tambah Data Warga
-    </a>
-  </div>
+  {{-- Filter + Search + Tambah --}}
+  <form method="GET" action="{{ route('warga.index') }}" class="row g-2 align-items-end mb-4">
+    {{-- Filter Jenis Kelamin --}}
+    <div class="col-md-2">
+      <label class="form-label small mb-1">Jenis Kelamin</label>
+      <select name="jenis_kelamin" class="form-select" onchange="this.form.submit()">
+        <option value="">Semua</option>
+        <option value="Laki-laki" {{ request('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+        <option value="Perempuan" {{ request('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+      </select>
+    </div>
+
+    {{-- Filter Agama --}}
+    <div class="col-md-2">
+      <label class="form-label small mb-1">Agama</label>
+      <select name="agama" class="form-select" onchange="this.form.submit()">
+        <option value="">Semua</option>
+        <option value="Islam" {{ request('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
+        <option value="Kristen" {{ request('agama') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+        <option value="Katolik" {{ request('agama') == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+        <option value="Hindu" {{ request('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+        <option value="Buddha" {{ request('agama') == 'Buddha' ? 'selected' : '' }}>Buddha</option>
+        <option value="Konghucu" {{ request('agama') == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
+      </select>
+    </div>
+
+    {{-- Search (sekarang lebarnya sama kayak di Keluarga KK, col-md-4) --}}
+    <div class="col-md-4">
+      <div class="input-group">
+        <input
+          type="text"
+          name="search"
+          class="form-control"
+          placeholder="Cari nama, No KTP, pekerjaan, email"
+          value="{{ request('search') }}">
+        <button class="btn btn-outline-secondary" type="submit">
+          <i class="bi bi-search"></i> Cari
+        </button>
+        @if(request('search') || request('jenis_kelamin') || request('agama'))
+        <a href="{{ route('warga.index') }}" class="btn btn-outline-secondary">
+          Clear
+        </a>
+        @endif
+      </div>
+    </div>
+
+    {{-- Tombol tambah (dibikin col-md-4 biar balance) --}}
+    <div class="col-md-4 text-end">
+      <a href="{{ route('warga.create') }}" class="btn btn-primary shadow-sm mt-3 mt-md-0">
+        <i class="bi bi-plus-circle"></i> Tambah Data
+      </a>
+    </div>
+  </form>
 
   {{-- Tampilkan Data dalam bentuk Card --}}
   @if($warga->isEmpty())
@@ -55,6 +102,18 @@
     </div>
     @endforeach
   </div>
+
+  {{-- Pagination --}}
+  @if($warga->hasPages())
+  <div class="d-flex flex-column align-items-center mt-4 gap-2">
+    <div class="text-muted small">
+      Menampilkan {{ $warga->firstItem() }} – {{ $warga->lastItem() }} dari {{ $warga->total() }} warga
+    </div>
+    <div>
+      {{ $warga->links('pagination::bootstrap-5') }}
+    </div>
+  </div>
+  @endif
   @endif
 </div>
 @endsection

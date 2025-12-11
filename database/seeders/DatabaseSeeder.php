@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             FirstUserSeeder::class,
             KeluargaKkAnggotaSeeder::class,
+            PeristiwaKelahiranSeeder::class,
+            PeristiwaKematianSeeder::class,
+            PeristiwaPindahSeeder::class,
         ]);
     }
 }

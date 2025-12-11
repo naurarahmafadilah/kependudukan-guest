@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class KeluargaKk extends Model
 {
@@ -27,5 +28,28 @@ class KeluargaKk extends Model
     public function anggota()
     {
         return $this->hasMany(AnggotaKeluarga::class, 'kk_id', 'kk_id');
+    }
+
+    public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder
+    {
+        foreach ($filterableColumns as $column) {
+            if ($request->filled($column)) {
+                $query->where($column, $request->input($column));
+            }
+        }
+        return $query;
+    }
+
+    public function scopeSearch(Builder $query, $request, array $columns): Builder
+    {
+        if ($request->filled('search')) {
+            $keyword = $request->input('search');
+            $query->where(function ($q) use ($columns, $keyword) {
+                foreach ($columns as $col) {
+                    $q->orWhere($col, 'LIKE', "%{$keyword}%");
+                }
+            });
+        }
+        return $query;
     }
 }

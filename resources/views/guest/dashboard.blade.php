@@ -75,7 +75,8 @@
                 </a>
 
                 <!-- Button Toggler -->
-                <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -84,51 +85,107 @@
                     <div class="navbar-nav d-flex align-items-center text-center">
 
                         <!-- Dashboard -->
-                        <a href="{{ route('dashboard') }}" class="nav-item nav-link {{ Request::routeIs('dashboard') ? 'text-primary fw-semibold' : 'text-dark' }}">
+                        <a href="{{ route('dashboard') }}"
+                            class="nav-item nav-link {{ Request::routeIs('dashboard') ? 'text-primary fw-semibold' : 'text-dark' }}">
                             <i class="bi bi-bar-chart-fill me-2 text-primary"></i> Dashboard
                         </a>
 
                         <!-- Data Warga -->
-                        <a href="{{ route('warga.index') }}" class="nav-item nav-link {{ Request::routeIs('warga.*') ? 'text-success fw-semibold' : 'text-dark' }}">
-                            <i class="bi bi-people-fill me-2 text-success"></i> Data Warga
+                        <a href="{{ route('warga.index') }}"
+                            class="nav-item nav-link {{ Request::routeIs('warga.*') ? 'text-success fw-semibold' : 'text-dark' }}">
+                            <i class="bi bi-people-fill me-2 text-success"></i> Warga
                         </a>
 
                         <!-- Data Keluarga -->
-                        <a href="{{ route('kependudukan.index') }}" class="nav-item nav-link {{ Request::routeIs('kependudukan.*') ? 'text-warning fw-semibold' : 'text-dark' }}">
-                            <i class="bi bi-house-heart-fill me-2 text-warning"></i> Data Keluarga
+                        <a href="{{ route('kependudukan.index') }}"
+                            class="nav-item nav-link {{ Request::routeIs('kependudukan.*') ? 'text-warning fw-semibold' : 'text-dark' }}">
+                            <i class="bi bi-house-heart-fill me-2 text-warning"></i> Keluarga
                         </a>
 
-                        <!-- Data Anggota Keluarga -->
-                        <a href="{{ route('anggota-keluarga.index') }}" class="nav-item nav-link {{ Request::routeIs('anggota-keluarga.*') ? 'text-info fw-semibold' : 'text-dark' }}">
+                        <!-- Data Anggota -->
+                        <a href="{{ route('anggota-keluarga.index') }}"
+                            class="nav-item nav-link {{ Request::routeIs('anggota-keluarga.*') ? 'text-info fw-semibold' : 'text-dark' }}">
                             <i class="bi bi-people-fill me-2 text-info"></i> Anggota Keluarga
                         </a>
 
                         <!-- Data User -->
-                        <a href="{{ route('user.index') }}" class="nav-item nav-link {{ Request::routeIs('user.*') ? 'text-danger fw-semibold' : 'text-dark' }}">
-                            <i class="bi bi-person-badge-fill me-2 text-danger"></i> Data User
+                        <a href="{{ route('user.index') }}"
+                            class="nav-item nav-link {{ Request::routeIs('user.*') ? 'text-danger fw-semibold' : 'text-dark' }}">
+                            <i class="bi bi-person-badge-fill me-2 text-danger"></i> User
                         </a>
 
-                        <!-- Dropdown Pages -->
+                        <!-- PERISTIWA DROPDOWN -->
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle stylish-dropdown {{ Request::routeIs('guest.pages.*') ? 'text-primary fw-semibold' : 'text-dark' }}" data-bs-toggle="dropdown">
+                            <a href="#"
+                                class="nav-link dropdown-toggle stylish-dropdown 
+        {{ Request::routeIs('kelahiran.*') || Request::routeIs('kematian.*') || Request::routeIs('pindah.*')
+            ? 'text-primary fw-semibold' : 'text-dark' }}"
+                                data-bs-toggle="dropdown">
+                                <i class="bi bi-calendar-event-fill me-2 text-primary"></i> Peristiwa
+                            </a>
+
+                            <div class="dropdown-menu shadow-lg border-0 rounded-3 animate-dropdown">
+
+                                <!-- Kelahiran -->
+                                <a href="{{ route('kelahiran.index') }}"
+                                    class="dropdown-item cool-item {{ Request::routeIs('kelahiran.*') ? 'text-success fw-semibold' : 'text-dark' }}">
+                                    <i class="bi bi-person-hearts me-2 text-success"></i> Kelahiran
+                                </a>
+
+                                <!-- Kematian -->
+                                <a href="{{ route('kematian.index') }}"
+                                    class="dropdown-item cool-item {{ Request::routeIs('kematian.*') ? 'text-danger fw-semibold' : 'text-dark' }}">
+                                    <i class="bi bi-emoji-dizzy-fill me-2 text-danger"></i> Kematian
+                                </a>
+
+                                <!-- Pindah -->
+                                <a href="{{ route('pindah.index') }}"
+                                    class="dropdown-item cool-item {{ Request::routeIs('pindah.*') ? 'text-warning fw-semibold' : 'text-dark' }}">
+                                    <i class="bi bi-truck-front-fill me-2 text-warning"></i> Pindah Domisili
+                                </a>
+
+                            </div>
+                        </div>
+
+
+
+                        <!-- ABOUT DROPDOWN -->
+                        <div class="nav-item dropdown ms-1">
+                            <a href="#"
+                                class="nav-link dropdown-toggle stylish-dropdown {{ Request::routeIs('guest.pages.*') ? 'text-primary fw-semibold' : 'text-dark' }}"
+                                data-bs-toggle="dropdown">
                                 <i class="bi bi-folder-fill me-2 text-secondary"></i> About
                             </a>
                             <div class="dropdown-menu shadow-lg border-0 rounded-3 animate-dropdown">
-                                <a href="{{ route('guest.pages.about') }}" class="dropdown-item cool-item {{ Request::routeIs('guest.pages.about') ? 'text-primary fw-semibold' : 'text-dark' }}">
+                                <a href="{{ route('guest.pages.about') }}"
+                                    class="dropdown-item cool-item {{ Request::routeIs('guest.pages.about') ? 'text-primary fw-semibold' : 'text-dark' }}">
                                     <i class="bi bi-info-square-fill me-2 text-primary"></i> Tentang
                                 </a>
-                                <a href="{{ route('guest.pages.layanan') }}" class="dropdown-item cool-item {{ Request::routeIs('guest.pages.layanan') ? 'text-success fw-semibold' : 'text-dark' }}">
+
+                                <a href="{{ route('guest.pages.layanan') }}"
+                                    class="dropdown-item cool-item {{ Request::routeIs('guest.pages.layanan') ? 'text-success fw-semibold' : 'text-dark' }}">
                                     <i class="bi bi-sliders2-vertical me-2 text-success"></i> Layanan
                                 </a>
-                                <a href="{{ route('guest.pages.kontak') }}" class="dropdown-item cool-item {{ Request::routeIs('guest.pages.kontak') ? 'text-danger fw-semibold' : 'text-dark' }}">
+
+                                <a href="{{ route('guest.pages.kontak') }}"
+                                    class="dropdown-item cool-item {{ Request::routeIs('guest.pages.kontak') ? 'text-danger fw-semibold' : 'text-dark' }}">
                                     <i class="bi bi-envelope-paper-fill me-2 text-danger"></i> Kontak
                                 </a>
                             </div>
                         </div>
+
                     </div>
                 </div>
-            </nav>
+                <!-- Navbar End -->
+
+
+
         </div>
+    </div>
+    </div>
+    </div>
+    </nav>
+    </div>
     </div>
     <!-- Navbar End -->
 

@@ -11,7 +11,20 @@ class AnggotaKeluargaController extends Controller
 {
     public function index(Request $request)
     {
+
         $anggota = AnggotaKeluarga::with(['keluarga','warga'])->latest('anggota_id');
+        //kolom yang bisa di-filter (langsung dari tabel anggota_keluarga)
+        $filterableColumns = ['hubungan'];
+
+        // kolom di tabel anggota_keluarga yang mau dipakai untuk search langsung
+        $searchableColumns = ['hubungan'];
+
+        $anggota = AnggotaKeluarga::with(['keluarga','warga'])
+        ->filter($request, $filterableColumns)   // scopeFilter di model
+            ->search($request, $searchableColumns)   // scopeSearch di model
+            ->latest('anggota_id')
+            ->paginate(15);
+
         return view('guest.anggota.index', compact('anggota'));
 
         $keluargaList = KeluargaKk::orderBy('kk_nomor')->get();

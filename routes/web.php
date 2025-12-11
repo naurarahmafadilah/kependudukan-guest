@@ -7,6 +7,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KeluargaKkController;
+use App\Http\Controllers\PeristiwaKelahiranController;
+use App\Http\Controllers\PeristiwaKematianController;
+use App\Http\Controllers\PeristiwaPindahController;
 use App\Models\AnggotaKeluarga;
 
 Route::get('/', function () {
@@ -43,3 +46,7 @@ Route::get('/login', function () {
 
 Route::resource('user', UserController::class);
 Route::resource('anggota-keluarga', AnggotaKeluargaController::class);
+Route::resource('kelahiran', PeristiwaKelahiranController::class);
+Route::resource('kematian', PeristiwaKematianController::class);
+Route::resource('pindah', PeristiwaPindahController::class);
+
