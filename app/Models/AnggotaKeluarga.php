@@ -64,7 +64,6 @@ class AnggotaKeluarga extends Model
         });
 
     }
-}
 
     // 🔎 SEARCH (sesuai modul tapi aku tambahin pencarian ke relasi biar lebih berguna)
     public function scopeSearch(Builder $query, $request, array $columns): Builder
@@ -93,4 +92,4 @@ class AnggotaKeluarga extends Model
 
         return $query;
     }
-
+}
