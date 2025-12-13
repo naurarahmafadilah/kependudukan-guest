@@ -3,7 +3,7 @@
 @section('content')
 <div class="main-content">
     <div class="container text-center">
-        <h1 class="mb-4">Selamat Datang di <span class="text-primary">Bina Desa</span></h1>
+        <h1 class="mb-4">Selamat Datang di <span class="text-primary">Nusa Data</span></h1>
         <p class="lead mb-4">
             Website ini menjadi media informasi dan data kependudukan, serta memperkenalkan kegiatan dan layanan yang ada di Bina Desa.
             Kami berkomitmen untuk membantu masyarakat desa melalui teknologi, edukasi, dan inovasi berkelanjutan.

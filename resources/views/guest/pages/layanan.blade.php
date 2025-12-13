@@ -4,10 +4,10 @@
 <div class="about-container text-center container">
 
     <!-- Judul Utama -->
-    <h1 class="mb-4 fw-bold text-dark">Layanan <span>Bina Desa</span></h1>
+    <h1 class="mb-4 fw-bold text-dark">Layanan <span>Nusa Data</span></h1>
 
     <p class="lead mb-5 text-secondary mx-auto" style="max-width: 850px;">
-        Bina Desa menyediakan berbagai layanan untuk mendukung administrasi kependudukan dan kesejahteraan warga desa.
+        Nusa Data menyediakan berbagai layanan untuk mendukung administrasi kependudukan dan kesejahteraan warga desa.
         Seluruh sistem layanan ini dikelola dengan prinsip transparansi, keamanan, dan kemudahan akses bagi masyarakat.
     </p>
 

@@ -8,10 +8,10 @@
 <div class="about-container text-center container">
 
     <!-- Judul Utama -->
-    <h1 class="mb-4 fw-bold text-dark">Tentang <span>Bina Desa</span></h1>
+    <h1 class="mb-4 fw-bold text-dark">Tentang <span>Nusa Data</span></h1>
 
     <p class="lead mb-5 text-secondary mx-auto" style="max-width: 850px;">
-        Bina Desa merupakan program pengembangan masyarakat yang berfokus pada peningkatan kesejahteraan warga desa
+        Nusa Data merupakan program pengembangan masyarakat yang berfokus pada peningkatan kesejahteraan warga desa
         melalui edukasi, inovasi, dan kolaborasi antara pemerintah, masyarakat, serta mahasiswa.
         Program ini menjadi wujud nyata kontribusi akademik terhadap pembangunan berkelanjutan di tingkat desa.
     </p>

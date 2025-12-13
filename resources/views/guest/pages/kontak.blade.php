@@ -4,10 +4,10 @@
 <div class="about-container text-center container">
 
     <!-- Judul Utama -->
-    <h1 class="mb-4 fw-bold text-dark">Kontak <span>Bina Desa</span></h1>
+    <h1 class="mb-4 fw-bold text-dark">Kontak <span>Nusa Data</span></h1>
 
     <p class="lead mb-5 text-secondary mx-auto" style="max-width: 850px;">
-        Kami siap membantu Anda! Hubungi tim <strong>Bina Desa</strong> untuk pertanyaan, saran, atau kerja sama.
+        Kami siap membantu Anda! Hubungi tim <strong>Nusa Data</strong> untuk pertanyaan, saran, atau kerja sama.
         Semua layanan komunikasi kami terbuka untuk masyarakat yang ingin berkontribusi dalam pembangunan desa.
     </p>
 

@@ -80,7 +80,7 @@
                 alt="Logo Bina Desa"
                 class="login-logo">
 
-            <h4 class="fw-bold mb-1 text-dark">Login Bina Desa</h4>
+            <h4 class="fw-bold mb-1 text-dark">Login Nusa Data</h4>
             <p class="text-muted mb-0">Masuk dengan akun Anda</p>
         </div>
 
@@ -129,7 +129,7 @@
 
         <!-- FOOTER -->
         <p class="text-center text-muted mt-4 mb-0 login-footer">
-            © 2025 Bina Desa <br>
+            © 2025 Nusa Data <br>
             Sistem Informasi Kependudukan
         </p>
 
