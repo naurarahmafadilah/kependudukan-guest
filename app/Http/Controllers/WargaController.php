@@ -12,12 +12,12 @@ class WargaController extends Controller
         $filterableColumns = ['jenis_kelamin', 'agama'];
         $searchableColumns = ['no_ktp', 'nama', 'pekerjaan', 'email'];
 
-        $warga = Warga::filter($request, $filterableColumns)   // scopeFilter di model
-            ->search($request, $searchableColumns)             // scopeSearch di model
+        $warga = Warga::filter($request, $filterableColumns)
+            ->search($request, $searchableColumns)
             ->latest()
-            ->paginate(12)                                     // misal 12 card per halaman
-            ->withQueryString(); 
-            
+            ->paginate(12)
+            ->withQueryString();
+
         return view('guest.warga.index', compact('warga'));
     }
 
@@ -35,18 +35,43 @@ class WargaController extends Controller
         ]);
 
         Warga::create($request->all());
-        return redirect()->route('warga.index')->with('success', 'Data warga berhasil ditambahkan!');
+
+        return redirect()
+            ->route('warga.index')
+            ->with('success', 'Data warga berhasil ditambahkan!');
     }
+
+    /**
+     * ===============================
+     * SHOW / DETAIL WARGA
+     * ===============================
+     */
+    public function show($id)
+    {
+        $warga = Warga::with([
+            'keluarga.kepalaKeluarga',
+            'keluarga.anggota.warga',
+            'anggotaKeluarga',
+            'kelahiran',
+            'kematian',
+            'pindah'
+        ])->findOrFail($id);
+
+        return view('guest.warga.show', compact('warga'));
+    }
+
 
     public function edit($id)
     {
         $warga = Warga::findOrFail($id);
+
         return view('guest.warga.edit', compact('warga'));
     }
 
     public function update(Request $request, $id)
     {
         $warga = Warga::findOrFail($id);
+
         $request->validate([
             'no_ktp' => 'required|unique:warga,no_ktp,' . $warga->warga_id . ',warga_id',
             'nama' => 'required',
@@ -54,12 +79,18 @@ class WargaController extends Controller
         ]);
 
         $warga->update($request->all());
-        return redirect()->route('warga.index')->with('success', 'Data warga berhasil diperbarui!');
+
+        return redirect()
+            ->route('warga.index')
+            ->with('success', 'Data warga berhasil diperbarui!');
     }
 
     public function destroy($id)
     {
         Warga::findOrFail($id)->delete();
-        return redirect()->route('warga.index')->with('success', 'Data warga berhasil dihapus!');
+
+        return redirect()
+            ->route('warga.index')
+            ->with('success', 'Data warga berhasil dihapus!');
     }
 }

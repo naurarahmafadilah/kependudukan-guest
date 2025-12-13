@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,6 +12,7 @@ class Warga extends Model
 
     protected $table = 'warga';
     protected $primaryKey = 'warga_id';
+
     protected $fillable = [
         'no_ktp',
         'nama',
@@ -24,11 +23,43 @@ class Warga extends Model
         'email'
     ];
 
+    /* ===============================
+     | RELASI
+     |===============================*/
+
+    // 🏠 Keluarga (KK tempat warga terdaftar)
     public function keluarga()
     {
-        return $this->hasMany(KeluargaKk::class, 'kepala_keluarga_warga_id');
+        return $this->belongsTo(KeluargaKk::class, 'kk_id', 'kk_id');
     }
 
+    // 👨‍👩‍👧 Anggota keluarga
+    public function anggotaKeluarga()
+    {
+        return $this->hasMany(AnggotaKeluarga::class, 'warga_id', 'warga_id');
+    }
+
+    // 👶 Peristiwa kelahiran
+    public function kelahiran()
+    {
+        return $this->hasOne(PeristiwaKelahiran::class, 'warga_id', 'warga_id');
+    }
+
+    // ⚰️ Peristiwa kematian
+    public function kematian()
+    {
+        return $this->hasOne(PeristiwaKematian::class, 'warga_id', 'warga_id');
+    }
+
+    // 🚚 Peristiwa pindah domisili
+    public function pindah()
+    {
+        return $this->hasOne(PeristiwaPindah::class, 'warga_id', 'warga_id');
+    }
+
+    /* ===============================
+     | SCOPE FILTER
+     |===============================*/
     public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder
     {
         foreach ($filterableColumns as $column) {
@@ -39,7 +70,9 @@ class Warga extends Model
         return $query;
     }
 
-    // 🔎 SEARCH
+    /* ===============================
+     | SCOPE SEARCH
+     |===============================*/
     public function scopeSearch(Builder $query, $request, array $columns): Builder
     {
         if ($request->filled('search')) {

@@ -11,6 +11,8 @@ class AnggotaKeluargaController extends Controller
 {
     public function index(Request $request)
     {
+
+        $anggota = AnggotaKeluarga::with(['keluarga','warga'])->latest('anggota_id');
         //kolom yang bisa di-filter (langsung dari tabel anggota_keluarga)
         $filterableColumns = ['hubungan'];
 
@@ -22,8 +24,33 @@ class AnggotaKeluargaController extends Controller
             ->search($request, $searchableColumns)   // scopeSearch di model
             ->latest('anggota_id')
             ->paginate(15);
-            
+
         return view('guest.anggota.index', compact('anggota'));
+
+        $keluargaList = KeluargaKk::orderBy('kk_nomor')->get();
+
+        // kolom untuk filter exact match (sesuai name di form)
+        $filterableColumns = ['kk_id', 'hubungan'];
+
+        // kolom untuk pencarian (search) — sesuaikan nama kolom & relasi
+        $searchableColumns = ['warga.nama', 'warga.no_ktp', 'hubungan'];
+
+        // base query (eager load relasi)
+        $query = AnggotaKeluarga::with(['keluarga', 'warga']);
+
+        // terapkan filter dan search sesuai modul (hanya jika scope ada)
+        if (method_exists(AnggotaKeluarga::class, 'scopeFilter')) {
+            $query = $query->filter($request, $filterableColumns);
+        }
+        if (method_exists(AnggotaKeluarga::class, 'scopeSearch')) {
+            $query = $query->search($request, $searchableColumns);
+        }
+
+        // urut terbaru dulu (sesuai modul)
+        $query = $query->orderByDesc('anggota_id');
+
+        // pagination -> sesuai modul: 10 per halaman, pertahankan query string, tampilkan 2 halaman samping
+        $anggota = $query->paginate(10)->onEachSide(2);
     }
 
     public function create()

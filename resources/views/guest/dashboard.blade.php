@@ -45,19 +45,28 @@
     <div class="container-fluid bg-primary text-white pt-4 pb-5 d-none d-lg-flex">
         <div class="container pb-2">
             <div class="d-flex align-items-center justify-content-between">
-                <div class="d-flex">
-                    <i class="bi bi-telephone-inbound fs-2"></i>
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-telephone-fill fs-3 text-white"></i>
                     <div class="ms-3">
-                        <h5 class="text-white mb-0">Call Now</h5>
-                        <span>+012 345 6789</span>
+                        <h6 class="text-white mb-0">Telepon</h6>
+                        <span class="fw-semibold text-warning">
+                            +62 821 7379 4219
+                        </span>
                     </div>
                 </div>
-                <a href="index.html" class="h1 text-white mb-0">Data<span class="text-dark">Kependudukan</span></a>
-                <div class="d-flex">
-                    <i class="bi bi-envelope fs-2"></i>
+
+
+                <a href="index.html" class="d-flex align-items-center">
+                    <img src="{{ asset('assets-guest/img/kependudukan.png') }}" alt="Logo Kependudukan"
+                        style="height:70px;">
+                </a>
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-envelope-fill fs-3 text-white"></i>
                     <div class="ms-3">
-                        <h5 class="text-white mb-0">Mail Now</h5>
-                        <span>binadesa@gmail.com</span>
+                        <h6 class="text-white mb-0">Email</h6>
+                        <span class="fw-semibold text-warning">
+                            nusadata@gmail.com
+                        </span>
                     </div>
                 </div>
             </div>
@@ -76,105 +85,144 @@
                     <h1 class="text-primary m-0">Data<span class="text-dark">Kependudukan</span></h1>
                 </a>
 
-                <!-- Toggle Responsive -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Navbar Content -->
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-
                     <div class="navbar-nav mx-auto d-flex align-items-center text-center gap-2">
 
-                        <!-- Dashboard -->
                         <a href="{{ route('dashboard') }}"
-                            class="nav-item nav-link d-flex align-items-center 
-                       {{ Request::routeIs('dashboard') ? 'text-primary fw-semibold' : 'text-dark' }}">
+                            class="nav-item nav-link d-flex align-items-center {{ Request::routeIs('dashboard') ? 'text-primary fw-semibold' : 'text-dark' }}">
                             <i class="bi bi-bar-chart-fill me-1 text-primary"></i> Dashboard
                         </a>
 
-                        <!-- Warga -->
                         <a href="{{ route('warga.index') }}"
-                            class="nav-item nav-link d-flex align-items-center 
-                       {{ Request::routeIs('warga.*') ? 'text-success fw-semibold' : 'text-dark' }}">
+                            class="nav-item nav-link d-flex align-items-center {{ Request::routeIs('warga.*') ? 'text-success fw-semibold' : 'text-dark' }}">
                             <i class="bi bi-people-fill me-1 text-success"></i> Warga
                         </a>
 
-                        <!-- Keluarga -->
                         <a href="{{ route('kependudukan.index') }}"
-                            class="nav-item nav-link d-flex align-items-center 
-                       {{ Request::routeIs('kependudukan.*') ? 'text-warning fw-semibold' : 'text-dark' }}">
+                            class="nav-item nav-link d-flex align-items-center {{ Request::routeIs('kependudukan.*') ? 'text-warning fw-semibold' : 'text-dark' }}">
                             <i class="bi bi-house-heart-fill me-1 text-warning"></i> Keluarga
                         </a>
 
-                        <!-- Anggota -->
                         <a href="{{ route('anggota-keluarga.index') }}"
-                            class="nav-item nav-link d-flex align-items-center 
-                       {{ Request::routeIs('anggota-keluarga.*') ? 'text-info fw-semibold' : 'text-dark' }}">
+                            class="nav-item nav-link d-flex align-items-center {{ Request::routeIs('anggota-keluarga.*') ? 'text-info fw-semibold' : 'text-dark' }}">
                             <i class="bi bi-people-fill me-1 text-info"></i> Anggota
                         </a>
 
-                        <!-- User -->
                         <a href="{{ route('user.index') }}"
-                            class="nav-item nav-link d-flex align-items-center 
-                       {{ Request::routeIs('user.*') ? 'text-danger fw-semibold' : 'text-dark' }}">
+                            class="nav-item nav-link d-flex align-items-center {{ Request::routeIs('user.*') ? 'text-danger fw-semibold' : 'text-dark' }}">
                             <i class="bi bi-person-badge-fill me-1 text-danger"></i> User
                         </a>
 
                         <!-- Peristiwa Dropdown -->
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle stylish-dropdown
-                           {{ Request::routeIs('kelahiran.*') || Request::routeIs('kematian.*') || Request::routeIs('pindah.*')
-                               ? 'text-primary fw-semibold' : 'text-dark' }}"
+                            <a href="#"
+                                class="nav-link dropdown-toggle d-flex align-items-center
+       {{ Request::routeIs('kelahiran.*') || Request::routeIs('kematian.*') || Request::routeIs('pindah.*')
+           ? 'text-primary fw-semibold' : 'text-dark' }}"
                                 data-bs-toggle="dropdown">
-                                <i class="bi bi-calendar-event-fill me-1 text-primary"></i> Peristiwa
+                                <i class="bi bi-calendar-event-fill me-2 text-primary"></i> Peristiwa
                             </a>
 
                             <div class="dropdown-menu shadow-lg border-0 rounded-3 animate-dropdown">
-                                <a href="{{ route('kelahiran.index') }}" class="dropdown-item">Kelahiran</a>
-                                <a href="{{ route('kematian.index') }}" class="dropdown-item">Kematian</a>
-                                <a href="{{ route('pindah.index') }}" class="dropdown-item">Pindah Domisili</a>
+                                <a href="{{ route('kelahiran.index') }}" class="dropdown-item d-flex align-items-center">
+                                    <i class="bi bi-emoji-smile-fill me-2 text-success"></i> Kelahiran
+                                </a>
+                                <a href="{{ route('kematian.index') }}" class="dropdown-item d-flex align-items-center">
+                                    <i class="bi bi-emoji-dizzy-fill me-2 text-danger"></i> Kematian
+                                </a>
+                                <a href="{{ route('pindah.index') }}" class="dropdown-item d-flex align-items-center">
+                                    <i class="bi bi-truck me-2 text-warning"></i> Pindah Domisili
+                                </a>
                             </div>
                         </div>
+
 
                         <!-- About Dropdown -->
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle stylish-dropdown
-                           {{ Request::routeIs('guest.pages.*') ? 'text-primary fw-semibold' : 'text-dark' }}"
+                            <a href="#"
+                                class="nav-link dropdown-toggle d-flex align-items-center
+       {{ Request::routeIs('guest.pages.*') ? 'text-primary fw-semibold' : 'text-dark' }}"
                                 data-bs-toggle="dropdown">
-                                <i class="bi bi-folder-fill me-1 text-secondary"></i> About
+                                <i class="bi bi-folder-fill me-2 text-secondary"></i> About
                             </a>
 
                             <div class="dropdown-menu shadow-lg border-0 rounded-3 animate-dropdown">
-                                <a href="{{ route('guest.pages.about') }}" class="dropdown-item">Tentang</a>
-                                <a href="{{ route('guest.pages.layanan') }}" class="dropdown-item">Layanan</a>
-                                <a href="{{ route('guest.pages.kontak') }}" class="dropdown-item">Kontak</a>
+                                <a href="{{ route('guest.pages.about') }}" class="dropdown-item d-flex align-items-center">
+                                    <i class="bi bi-info-circle-fill me-2 text-primary"></i> Tentang
+                                </a>
+                                <a href="{{ route('guest.pages.layanan') }}" class="dropdown-item d-flex align-items-center">
+                                    <i class="bi bi-briefcase-fill me-2 text-success"></i> Layanan
+                                </a>
+                                <a href="{{ route('guest.pages.kontak') }}" class="dropdown-item d-flex align-items-center">
+                                    <i class="bi bi-telephone-fill me-2 text-warning"></i> Kontak
+                                </a>
                             </div>
                         </div>
 
-                        <!-- USER NAVBAR DROPDOWN (DISEMPETKAN DI SAMPING ABOUT) -->
+
+
+
+                        <!-- USER NAVBAR DROPDOWN -->
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle stylish-dropdown d-flex align-items-center"
+                            <a href="#"
+                                class="nav-link dropdown-toggle d-flex align-items-center"
                                 data-bs-toggle="dropdown">
-                                <img src="https://i.pravatar.cc/40" class="rounded-circle me-1 shadow-sm" width="34" height="34">
-                                <span class="fw-semibold text-dark">{{ Auth::user()->name }}</span>
+
+                                <img src="https://i.pravatar.cc/40?u={{ Auth::user()->email }}"
+                                    class="rounded-circle me-2 shadow-sm"
+                                    width="34" height="34">
+
+                                <span class="fw-semibold text-dark">
+                                    {{ Auth::user()->name }}
+                                </span>
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-0"
-                                style="width: 220px; overflow: hidden;">
+                                style="width: 230px; overflow: hidden;">
+
+                                <!-- HEADER -->
                                 <li class="p-3 bg-light border-bottom">
                                     <div class="fw-semibold">{{ Auth::user()->name }}</div>
-                                    <small class="text-muted">Login: {{ session('login_time') }}</small>
+                                    <small class="text-muted">
+                                        Login: {{ session('login_time') }}
+                                    </small>
                                 </li>
-                                <li><a class="dropdown-item py-2" href="#">My Profile</a></li>
-                                <li><a class="dropdown-item py-2" href="#">Settings</a></li>
-                                <li><a class="dropdown-item py-2" href="#">Messages</a></li>
+
+                                <!-- MENU -->
+                                <li>
+                                    <a class="dropdown-item py-2" href="#">
+                                        <i class="bi bi-person-circle me-2"></i> My Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2" href="#">
+                                        <i class="bi bi-gear me-2"></i> Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2" href="#">
+                                        <i class="bi bi-envelope me-2"></i> Messages
+                                    </a>
+                                </li>
+
                                 <li>
                                     <hr class="dropdown-divider my-1">
                                 </li>
-                                <li><a class="dropdown-item text-danger fw-semibold py-2" href="{{ route('logout') }}">Logout</a></li>
+
+                                <!-- LOGOUT -->
+                                <li>
+                                    <a class="dropdown-item text-danger fw-semibold py-2"
+                                        href="{{ route('logout') }}">
+                                        <i class="bi bi-box-arrow-right me-2"></i> Logout
+                                    </a>
+                                </li>
                             </ul>
                         </div>
+
 
                     </div>
                 </div>
@@ -183,109 +231,159 @@
     </div>
     <!-- Navbar End -->
 
+    <!-- HERO / CAROUSEL START -->
+    <div id="heroCarousel"
+        class="carousel slide carousel-fade hero-carousel"
+        data-bs-ride="carousel"
+        data-bs-interval="5000"
+        data-bs-pause="false">
 
+        <div class="carousel-inner">
 
+            <!-- SLIDE 1 -->
+            <div class="carousel-item active">
+                <img src="{{ asset('assets-guest/img/desa.jpg') }}" alt="Desa Indonesia">
 
-    <!-- Carousel Start -->
-    <div class=" container-fluid header-carousel px-0 mb-5">
-        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="{{ asset('assets-guest/img/desa.jpg') }}" alt="Image">
-                    <div class="carousel-caption">
-                        <div class="container">
-                            <div class="row justify-content-start">
-                                <div class="col-lg-7 text-start">
-                                    <h1 class="display-1 text-white animated slideInRight mb-3">Selamat Datang di Data
-                                        Kependudukan</h1>
-                                    <a href="{{ route('guest.pages.about') }}" class="btn btn-primary py-3 px-5 animated slideInLeft">About Here!</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="{{ asset('assets-guest/img/desa2.jpg') }}" alt="Image">
-                    <div class="carousel-caption">
-                        <div class="container">
-                            <div class="row justify-content-end">
-                                <div class="col-lg-7 text-end">
-                                    <h1 class="display-1 text-white animated slideInLeft mb-3">Data Kependudukan</h1>
-                                    <a href="{{ route('kependudukan.index') }}" class="btn btn-primary py-3 px-5 animated slideInLeft">Explore
-                                        More</a>
-                                </div>
+                <!-- Overlay -->
+                <div class="hero-overlay"></div>
+
+                <!-- Caption -->
+                <div class="carousel-caption hero-caption">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-7 text-start">
+                                <h1 class="hero-title text-white mb-3">
+                                    Selamat Datang di <br> <strong>NusaData</strong>
+                                </h1>
+                                <p class="hero-subtitle text-white mb-4">
+                                    Sistem Informasi Kependudukan Desa yang Modern & Terintegrasi
+                                </p>
+                                <a href="{{ route('guest.pages.about') }}"
+                                    class="btn btn-primary btn-sm mt-4 px-4">
+                                    Tentang Kami
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-    <!-- Carousel End -->
 
+            <!-- SLIDE 2 -->
+            <div class="carousel-item">
+                <img src="{{ asset('assets-guest/img/desa2.jpg') }}" alt="Wilayah Desa">
 
-    <!-- About Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="row g-0">
-                        <div class="col-6">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/about-1.jpg') }}">
-                        </div>
-                        <div class="col-6">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/about-2.jpg') }}">
-                        </div>
-                        <div class="col-6">
-                            <img class="img-fluid" src="{{ asset('assets-guest/img/about-3.jpg') }}">
-                        </div>
-                        <div class="col-6">
-                            <div
-                                class="bg-primary w-100 h-100 mt-n5 ms-n5 d-flex flex-column align-items-center justify-content-center">
-                                <div class="icon-box-light">
-                                    <i class="bi bi-award text-dark"></i>
-                                </div>
-                                <h1 class="display-1 text-white mb-0" data-toggle="counter-up">25</h1>
-                                <small class="fs-5 text-white">Years Experience</small>
+                <div class="hero-overlay"></div>
+
+                <div class="carousel-caption hero-caption">
+                    <div class="container">
+                        <div class="row justify-content-end">
+                            <div class="col-lg-7 text-end">
+                                <h1 class="hero-title text-white mb-3">
+                                    Data Penduduk <br> Lebih Tertata
+                                </h1>
+                                <p class="hero-subtitle text-white mb-4">
+                                    Pengelolaan data warga, keluarga, dan peristiwa desa secara digital
+                                </p>
+                                <a href="{{ route('kependudukan.index') }}"
+                                    class="btn btn-primary btn-sm mt-4 px-4">
+                                    Jelajahi Data
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="display-6 mb-4">Trusted Lab Experts and Latest Lab Technologies</h1>
-                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
-                        iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu
-                        quis, fringilla risus. Pellentesque eu consequat augue.</p>
-                    <div class="row g-4 g-sm-5 justify-content-center">
-                        <div class="col-sm-6">
-                            <div class="about-fact btn-square flex-column rounded-circle bg-primary ms-sm-auto">
-                                <p class="text-white mb-0">Awards Winning</p>
-                                <h1 class="text-white mb-0" data-toggle="counter-up">9999</h1>
-                            </div>
+            </div>
+
+        </div>
+
+        <!-- CONTROL -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+
+    </div>
+    <!-- HERO / CAROUSEL END -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5" id="about">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+
+                <!-- LEFT IMAGE -->
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <img class="img-fluid rounded-3" src="{{ asset('assets-guest/img/about-1.jpg') }}">
                         </div>
-                        <div class="col-sm-6 text-start">
-                            <div class="about-fact btn-square flex-column rounded-circle bg-secondary me-sm-auto">
-                                <p class="text-white mb-0">Complete Cases</p>
-                                <h1 class="text-white mb-0" data-toggle="counter-up">9999</h1>
-                            </div>
+                        <div class="col-6">
+                            <img class="img-fluid rounded-3" src="{{ asset('assets-guest/img/about-2.jpg') }}">
                         </div>
-                        <div class="col-sm-6">
-                            <div class="about-fact mt-n130 btn-square flex-column rounded-circle bg-dark mx-sm-auto">
-                                <p class="text-white mb-0">Happy Clients</p>
-                                <h1 class="text-white mb-0" data-toggle="counter-up">9999</h1>
+                        <div class="col-6">
+                            <img class="img-fluid rounded-3" src="{{ asset('assets-guest/img/about-3.jpg') }}">
+                        </div>
+                        <div class="col-6">
+                            <div
+                                class="bg-primary text-center h-100 rounded-3 d-flex flex-column justify-content-center align-items-center">
+                                <i class="bi bi-people-fill fs-1 text-white mb-2"></i>
+                                <h2 class="text-white mb-0" data-toggle="counter-up">100%</h2>
+                                <small class="text-white">Data Terintegrasi</small>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- RIGHT CONTENT -->
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.4s">
+                    <h6 class="text-primary fw-semibold mb-2">Tentang NusaData</h6>
+                    <h1 class="display-6 mb-4 fw-bold">
+                        Sistem Informasi Kependudukan Digital Desa
+                    </h1>
+
+                    <p class="mb-4 text-muted">
+                        <strong>NusaData</strong> adalah platform sistem informasi kependudukan berbasis web yang
+                        dirancang untuk membantu desa dalam mengelola data warga secara
+                        <strong>terstruktur, akurat, dan aman</strong>.
+                    </p>
+
+                    <p class="mb-4 text-muted">
+                        Sistem ini mencakup pengelolaan data warga, kartu keluarga, anggota keluarga,
+                        serta pencatatan peristiwa penting seperti
+                        <strong>kelahiran, kematian, dan perpindahan domisili</strong>.
+                    </p>
+
+                    <!-- FEATURES -->
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-check-circle-fill text-success fs-4 me-2"></i>
+                                <span>Data kependudukan terpusat</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-shield-lock-fill text-success fs-4 me-2"></i>
+                                <span>Aman & berbasis hak akses</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-speedometer2 text-success fs-4 me-2"></i>
+                                <span>Akses cepat & real-time</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-diagram-3-fill text-success fs-4 me-2"></i>
+                                <span>Terintegrasi antar data</span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -293,609 +391,19 @@
     <!-- About End -->
 
 
-    <!-- Features Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="row g-0 feature-row">
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="feature-item border h-100 p-5">
-                        <div class="icon-box-primary mb-4">
-                            <i class="bi bi-award text-dark"></i>
-                        </div>
-                        <h5 class="mb-3">Award Winning</h5>
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                            augue.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
-                    <div class="feature-item border h-100 p-5">
-                        <div class="icon-box-primary mb-4">
-                            <i class="bi bi-people text-dark"></i>
-                        </div>
-                        <h5 class="mb-3">Expet Doctors</h5>
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                            augue.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="feature-item border h-100 p-5">
-                        <div class="icon-box-primary mb-4">
-                            <i class="bi bi-cash-coin text-dark"></i>
-                        </div>
-                        <h5 class="mb-3">Fair Prices</h5>
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                            augue.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
-                    <div class="feature-item border h-100 p-5">
-                        <div class="icon-box-primary mb-4">
-                            <i class="bi bi-headphones text-dark"></i>
-                        </div>
-                        <h5 class="mb-3">24/7 Support</h5>
-                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                            augue.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Features End -->
 
 
-    <!-- Features Start -->
-    <div class="container-fluid feature mt-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="row g-0">
-                <div class="col-lg-6 pt-lg-5">
-                    <div class="bg-white p-5 mt-lg-5">
-                        <h1 class="display-6 mb-4 wow fadeIn" data-wow-delay="0.3s">The Best Medical Test & Laboratory
-                            Solution</h1>
-                        <p class="mb-4 wow fadeIn" data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor.
-                            Quisque vel lorem porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat
-                            augue.</p>
-                        <div class="row g-5 pt-2 mb-5">
-                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.3s">
-                                <div class="icon-box-primary mb-4">
-                                    <i class="bi bi-person-plus text-dark"></i>
-                                </div>
-                                <h5 class="mb-3">Experience Doctors</h5>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                            </div>
-                            <div class="col-sm-6 wow fadeIn" data-wow-delay="0.4s">
-                                <div class="icon-box-primary mb-4">
-                                    <i class="bi bi-check-all text-dark"></i>
-                                </div>
-                                <h5 class="mb-3">Advanced Microscopy</h5>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
-                            </div>
-                        </div>
-                        <a class="btn btn-primary py-3 px-5 wow fadeIn" data-wow-delay="0.5s" href="">Explore
-                            More</a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="row h-100 align-items-end">
-                        <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
-                            <div class="d-flex align-items-center justify-content-center" style="min-height: 300px;">
-                                <button type="button" class="btn-play" data-bs-toggle="modal"
-                                    data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
-                                    <span></span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="bg-primary p-5">
-                                <div class="experience mb-4 wow fadeIn" data-wow-delay="0.3s">
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <span class="text-white">Sample Preparation</span>
-                                        <span class="text-white">90%</span>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="90"
-                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div class="experience mb-4 wow fadeIn" data-wow-delay="0.4s">
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <span class="text-white">Result Accuracy</span>
-                                        <span class="text-white">95%</span>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="95"
-                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div class="experience mb-0 wow fadeIn" data-wow-delay="0.5s">
-                                    <div class="d-flex justify-content-between mb-2">
-                                        <span class="text-white">Lab Equipments</span>
-                                        <span class="text-white">90%</span>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="90"
-                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Features End -->
-
-
-    <!-- Video Modal Start -->
-    <div class="modal modal-video fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-0">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel">Youtube Video</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- 16:9 aspect ratio -->
-                    <div class="ratio ratio-16x9">
-                        <iframe class="embed-responsive-item" src="" id="video" allowfullscreen
-                            allowscriptaccess="always" allow="autoplay"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Video Modal End -->
-
-
-    <!-- Service Start -->
-    <div class="container-fluid container-service py-5">
-        <div class="container pt-5">
-            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="display-6 mb-3">Reliable & High-Quality Laboratory Service</h1>
-                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
-                    iaculis id elit eget, ultrices pulvinar tortor.</p>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item">
-                        <div class="icon-box-primary mb-4">
-                            <i class="bi bi-heart-pulse text-dark"></i>
-                        </div>
-                        <h5 class="mb-3">Pathology Testing</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                                augue.</p>
-                            <a class="btn btn-light px-3" href="">Read More<i
-                                    class="bi bi-chevron-double-right ms-1"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item">
-                        <div class="icon-box-primary mb-4">
-                            <i class="bi bi-lungs text-dark"></i>
-                        </div>
-                        <h5 class="mb-3">Microbiology Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                                augue.</p>
-                            <a class="btn btn-light px-3" href="">Read More<i
-                                    class="bi bi-chevron-double-right ms-1"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item">
-                        <div class="icon-box-primary mb-4">
-                            <i class="bi bi-virus text-dark"></i>
-                        </div>
-                        <h5 class="mb-3">Biochemistry Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                                augue.</p>
-                            <a class="btn btn-light px-3" href="">Read More<i
-                                    class="bi bi-chevron-double-right ms-1"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item">
-                        <div class="icon-box-primary mb-4">
-                            <i class="bi bi-capsule-pill text-dark"></i>
-                        </div>
-                        <h5 class="mb-3">Histopatology Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                                augue.</p>
-                            <a class="btn btn-light px-3" href="">Read More<i
-                                    class="bi bi-chevron-double-right ms-1"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item">
-                        <div class="icon-box-primary mb-4">
-                            <i class="bi bi-capsule text-dark"></i>
-                        </div>
-                        <h5 class="mb-3">Urine Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                                augue.</p>
-                            <a class="btn btn-light px-3" href="">Read More<i
-                                    class="bi bi-chevron-double-right ms-1"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item">
-                        <div class="icon-box-primary mb-4">
-                            <i class="bi bi-prescription2 text-dark"></i>
-                        </div>
-                        <h5 class="mb-3">Blood Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                                augue.</p>
-                            <a class="btn btn-light px-3" href="">Read More<i
-                                    class="bi bi-chevron-double-right ms-1"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item">
-                        <div class="icon-box-primary mb-4">
-                            <i class="bi bi-clipboard2-pulse text-dark"></i>
-                        </div>
-                        <h5 class="mb-3">Fever Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                                augue.</p>
-                            <a class="btn btn-light px-3" href="">Read More<i
-                                    class="bi bi-chevron-double-right ms-1"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="service-item">
-                        <div class="icon-box-primary mb-4">
-                            <i class="bi bi-file-medical text-dark"></i>
-                        </div>
-                        <h5 class="mb-3">Allergy Tests</h4>
-                            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                                augue.</p>
-                            <a class="btn btn-light px-3" href="">Read More<i
-                                    class="bi bi-chevron-double-right ms-1"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Service End -->
-
-
-    <!-- Appoinment Start -->
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <h1 class="display-6 mb-4">We Ensure You Will Always Get The Best Result</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit
-                        eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu quis, fringilla
-                        risus. Pellentesque eu consequat augue.</p>
-                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
-                        iaculis id elit eget, ultrices pulvinar tortor.</p>
-                    <div class="d-flex align-items-start wow fadeIn" data-wow-delay="0.3s">
-                        <div class="icon-box-primary">
-                            <i class="bi bi-geo-alt text-dark fs-1"></i>
-                        </div>
-                        <div class="ms-3">
-                            <h5>Office Address</h5>
-                            <span>123 Street, New York, USA</span>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="d-flex align-items-start wow fadeIn" data-wow-delay="0.4s">
-                        <div class="icon-box-primary">
-                            <i class="bi bi-clock text-dark fs-1"></i>
-                        </div>
-                        <div class="ms-3">
-                            <h5>Office Time</h5>
-                            <span>Mon-Sat 09am-5pm, Sun Closed</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <h2 class="mb-4">Online Appoinment</h2>
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                <label for="name">Your Name</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-floating">
-                                <input type="email" class="form-control" id="mail" placeholder="Your Email">
-                                <label for="mail">Your Email</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="mobile" placeholder="Your Mobile">
-                                <label for="mobile">Your Mobile</label>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-floating">
-                                <select class="form-select" id="service">
-                                    <option selected>Pathology Testing</option>
-                                    <option value="">Microbiology Tests</option>
-                                    <option value="">Biochemistry Tests</option>
-                                    <option value="">Histopatology Tests</option>
-                                </select>
-                                <label for="service">Choose A Service</label>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 130px"></textarea>
-                                <label for="message">Message</label>
-                            </div>
-                        </div>
-                        <div class="col-12 text-center">
-                            <button class="btn btn-primary w-100 py-3" type="submit">Submit Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Appoinment Start -->
-
-
-    <!-- Team Start -->
-    <div class="container-fluid container-team py-5">
-        <div class="container pb-5">
-            <div class="row g-5 align-items-center mb-5">
-                <div class="col-md-6 wow fadeIn" data-wow-delay="0.3s">
-                    <img class="img-fluid w-100" src="img/team-1.jpg" alt="">
-                </div>
-                <div class="col-md-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="display-6 mb-3">Dr. John Martin</h1>
-                    <p class="mb-1">CEO & Founder</p>
-                    <p class="mb-5">Labsky, New York, USA</p>
-                    <h3 class="mb-3">Biography</h3>
-                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
-                        iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu
-                        quis, fringilla risus. Pellentesque eu consequat augue.</p>
-                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue,
-                        iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu
-                        quis, fringilla risus. Pellentesque eu consequat augue.</p>
-                    <div class="d-flex">
-                        <a class="btn btn-lg-square btn-primary me-2" href=""><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-lg-square btn-primary me-2" href=""><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-lg-square btn-primary me-2" href=""><i
-                                class="fab fa-linkedin-in"></i></a>
-                        <a class="btn btn-lg-square btn-primary me-2" href=""><i
-                                class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-2.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-youtube"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-1">Alex Robin</h5>
-                            <span>Lab Assistant</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-3.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-youtube"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-1">Andrew Bon</h5>
-                            <span>Lab Assistant</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-4.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-youtube"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-1">Martin Tompson</h5>
-                            <span>Lab Assistant</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid w-100" src="img/team-5.jpg" alt="">
-                            <div class="team-social">
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-square btn-light mx-1" href=""><i
-                                        class="fab fa-youtube"></i></a>
-                            </div>
-                        </div>
-                        <div class="text-center p-4">
-                            <h5 class="mb-1">Clarabelle Samber</h5>
-                            <span>Lab Assistant</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
-
-
-    <!-- Testimonial Start -->
-    <div class="container-fluid testimonial py-5">
-        <div class="container pt-5">
-            <div class="row gy-5 gx-0">
-                <div class="col-lg-6 pe-lg-5 wow fadeIn" data-wow-delay="0.3s">
-                    <h1 class="display-6 text-white mb-4">What Clients Say About Our Lab Services!</h1>
-                    <p class="text-white mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-                        tellus augue, iaculis id elit eget, ultrices pulvinar tortor.</p>
-                    <a href="" class="btn btn-primary py-3 px-5">More Testimonials</a>
-                </div>
-                <div class="col-lg-6 mb-n5 wow fadeIn" data-wow-delay="0.5s">
-                    <div class="bg-white p-5">
-                        <div class="owl-carousel testimonial-carousel wow fadeIn" data-wow-delay="0.1s">
-                            <div class="testimonial-item">
-                                <div class="icon-box-primary mb-4">
-                                    <i class="bi bi-chat-left-quote text-dark"></i>
-                                </div>
-                                <p class="fs-5 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-                                    tellus augue, iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem
-                                    porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat augue.
-                                </p>
-                                <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0" src="img/testimonial-1.jpg" alt="">
-                                    <div class="ps-3">
-                                        <h5 class="mb-1">Client Name</h5>
-                                        <span class="text-primary">Profession</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="testimonial-item">
-                                <div class="icon-box-primary mb-4">
-                                    <i class="bi bi-chat-left-quote text-dark"></i>
-                                </div>
-                                <p class="fs-5 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-                                    tellus augue, iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem
-                                    porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat augue.
-                                </p>
-                                <div class="d-flex align-items-center">
-                                    <img class="flex-shrink-0" src="img/testimonial-2.jpg" alt="">
-                                    <div class="ps-3">
-                                        <h5 class="mb-1">Client Name</h5>
-                                        <span class="text-primary">Profession</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Testimonial End -->
-
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281234567890" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- Footer Start -->
-    <div class="container-fluid footer position-relative bg-dark text-white-50 py-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="row g-5 py-5">
-                <div class="col-lg-6 pe-lg-5">
-                    <a href="index.html" class="navbar-brand">
-                        <h1 class="h1 text-primary mb-0">Lab<span class="text-white">sky</span></h1>
-                    </a>
-                    <p class="fs-5 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus
-                        augue, iaculis id elit eget, ultrices pulvinar tortor.</p>
-                    <p><i class="fa fa-map-marker-alt me-2"></i>123 Street, New York, USA</p>
-                    <p><i class="fa fa-phone-alt me-2"></i>+012 345 67890</p>
-                    <p><i class="fa fa-envelope me-2"></i>info@example.com</p>
-                    <div class="d-flex mt-4">
-                        <a class="btn btn-lg-square btn-primary me-2" href="#"><i
-                                class="fab fa-twitter"></i></a>
-                        <a class="btn btn-lg-square btn-primary me-2" href="#"><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-lg-square btn-primary me-2" href="#"><i
-                                class="fab fa-linkedin-in"></i></a>
-                        <a class="btn btn-lg-square btn-primary me-2" href="#"><i
-                                class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-6 ps-lg-5">
-                    <div class="row g-5">
-                        <div class="col-sm-6">
-                            <h4 class="text-light mb-4">Quick Links</h4>
-                            <a class="btn btn-link" href="">About Us</a>
-                            <a class="btn btn-link" href="">Contact Us</a>
-                            <a class="btn btn-link" href="">Our Services</a>
-                            <a class="btn btn-link" href="">Terms & Condition</a>
-                            <a class="btn btn-link" href="">Support</a>
-                        </div>
-                        <div class="col-sm-6">
-                            <h4 class="text-light mb-4">Popular Links</h4>
-                            <a class="btn btn-link" href="">About Us</a>
-                            <a class="btn btn-link" href="">Contact Us</a>
-                            <a class="btn btn-link" href="">Our Services</a>
-                            <a class="btn btn-link" href="">Terms & Condition</a>
-                            <a class="btn btn-link" href="">Support</a>
-                        </div>
-                        <div class="col-sm-12">
-                            <h4 class="text-light mb-4">Newsletter</h4>
-                            <div class="w-100">
-                                <div class="input-group">
-                                    <input type="text" class="form-control border-0 py-3 px-4"
-                                        style="background: rgba(255, 255, 255, .1);"
-                                        placeholder="Your Email Address"><button class="btn btn-primary px-4">Sign
-                                        Up</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <footer class="bg-primary text-white text-center py-3">
+        <p class="mb-0">© {{ date('Y') }} | Bina Desa - Kependudukan</p>
+    </footer>
     <!-- Footer End -->
 
-
-    <!-- Copyright Start -->
-    <div class="container-fluid copyright bg-dark text-white-50 py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-0">&copy; <a href="#">Your Site Name</a>. All Rights Reserved.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                    <p class="mb-0">Designed by <a href="https://htmlcodex.com">HTML Codex</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Copyright End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
-            class="bi bi-arrow-up"></i></a>
 
 
     <!-- JavaScript Libraries -->

@@ -1,16 +1,15 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class AnggotaKeluarga extends Model
 {
-    protected $table = 'anggota_keluarga';
+    protected $table      = 'anggota_keluarga';
     protected $primaryKey = 'anggota_id';
-    public $incrementing = true;
-    protected $keyType = 'int';
+    public $incrementing  = true;
+    protected $keyType    = 'int';
 
     protected $fillable = [
         'kk_id',

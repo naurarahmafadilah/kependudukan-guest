@@ -6,6 +6,7 @@ use Illuminate\Foundation\Configuration\Middleware;
 
 use App\Http\Middleware\CheckIsLogin;
 use App\Http\Middleware\CheckRole;
+use App\Http\Middleware\RedirectGuestToLogin;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -19,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'checkIsLogin' => CheckIsLogin::class,
             'checkRole'    => CheckRole::class,
+            'redirect.guest' => RedirectGuestToLogin::class,
         ]);
 
     })

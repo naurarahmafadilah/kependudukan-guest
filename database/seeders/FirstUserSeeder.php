@@ -3,20 +3,18 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Faker\Factory as FakerFactory;
+use App\Models\User;
 
 class FirstUserSeeder extends Seeder
 {
     public function run(): void
     {
-
-        User::truncate();
         $faker = FakerFactory::create('id_ID');
 
         // ===================================
-        // 1. Admin Utama (Role: admin)
+        // 1. Admin Utama (Tetap 1)
         // ===================================
         User::updateOrCreate(
             ['email' => 'admin@example.com'],
@@ -28,9 +26,9 @@ class FirstUserSeeder extends Seeder
         );
 
         // ===================================
-        // 2. Generate 100 User Random
+        // 2. Generate User Random (admin / guest)
         // ===================================
-        $roles = ['operator', 'rt']; // role selain admin
+        $roles = ['admin', 'guest'];
 
         for ($i = 1; $i <= 300; $i++) {
             $nama = $faker->firstName() . ' ' . $faker->lastName();
@@ -39,7 +37,7 @@ class FirstUserSeeder extends Seeder
                 'name'     => $nama,
                 'email'    => $faker->unique()->safeEmail(),
                 'password' => Hash::make('password123'),
-                'role'     => $faker->randomElement($roles), // role acak
+                'role'     => $faker->randomElement($roles),
             ]);
         }
     }

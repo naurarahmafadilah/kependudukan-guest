@@ -1,74 +1,83 @@
 <?php
 
-use App\Http\Controllers\AnggotaKeluargaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KeluargaKkController;
+use App\Http\Controllers\AnggotaKeluargaController;
 use App\Http\Controllers\PeristiwaKelahiranController;
 use App\Http\Controllers\PeristiwaKematianController;
 use App\Http\Controllers\PeristiwaPindahController;
-use App\Models\AnggotaKeluarga;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+/*
+|--------------------------------------------------------------------------
+| PUBLIC (TANPA LOGIN)
+|--------------------------------------------------------------------------
+*/
+Route::get('/', fn () => view('welcome'))->name('home');
 
-// Halaman Tentang
-Route::get('/about', function () {
-    return view('guest.pages.about');
-})->name('guest.pages.about');
+Route::get('/about', fn () => view('guest.pages.about'))->name('guest.pages.about');
+Route::get('/layanan', fn () => view('guest.pages.layanan'))->name('guest.pages.layanan');
+Route::get('/kontak', fn () => view('guest.pages.kontak'))->name('guest.pages.kontak');
 
-// Halaman Layanan
-Route::get('/layanan', function () {
-    return view('guest.pages.layanan');
-})->name('guest.pages.layanan');;
-
-// Halaman Kontak
-Route::get('/kontak', function () {
-    return view('guest.pages.kontak');
-})->name('guest.pages.kontak');
-
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-// ==== Login & Logout ====
-Route::get('login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('login', [AuthController::class, 'login'])->name('login.post');
-
-// PERUBAHAN: Alias login tambahan agar middleware bisa menemukan route "login"
-Route::get('/auth/login', [AuthController::class, 'showLogin'])->name('login');
-
-Route::get('/login', function () {
-    return view('guest.auth.login');
-})->name('guest.auth.login');
-
+/*
+|--------------------------------------------------------------------------
+| AUTH
+|--------------------------------------------------------------------------
+*/
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// ==== Resource Routes ====
-Route::resource('user', UserController::class);
-Route::resource('warga', WargaController::class);
-Route::resource('kependudukan', KeluargaKkController::class);
-Route::resource('anggota-keluarga', AnggotaKeluargaController::class);
-Route::resource('kelahiran', PeristiwaKelahiranController::class);
-Route::resource('kematian', PeristiwaKematianController::class);
-Route::resource('pindah', PeristiwaPindahController::class);
+/*
+|--------------------------------------------------------------------------
+| AUTHENTICATED USERS (ADMIN & GUEST)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['checkIsLogin'])->group(function () {
 
-// ==== Middleware Proteksi Halaman ====
-Route::middleware(['checkIsLogin'])->group(function() {
+    // Dashboard (admin & guest)
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
 
-Route::middleware(['checkIsLogin', 'checkRole:admin,operator'])->group(function() {
-    Route::resource('user', UserController::class);
-});
+    /*
+    |--------------------------------------------------------------------------
+    | GUEST ACCESS (READ ONLY)
+    |--------------------------------------------------------------------------
+    */
+    Route::get('warga', [WargaController::class, 'index'])->name('warga.index');
+    Route::get('warga/{warga}', [WargaController::class, 'show'])->name('warga.show');
 
-Route::middleware(['checkIsLogin', 'checkRole:admin,operator,rt'])->group(function() {
-    Route::resource('warga', WargaController::class);
-    Route::resource('kependudukan', KeluargaKkController::class);
-    Route::resource('anggota-keluarga', AnggotaKeluargaController::class);
-    Route::resource('kelahiran', PeristiwaKelahiranController::class);
-    Route::resource('kematian', PeristiwaKematianController::class);
-    Route::resource('pindah', PeristiwaPindahController::class);
+    /*
+    |--------------------------------------------------------------------------
+    | JIKA GUEST KLIK EDIT / HAPUS → REDIRECT LOGIN
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware(['redirect.guest'])->group(function () {
+        Route::get('warga/{warga}/edit', [WargaController::class, 'edit'])->name('warga.edit');
+        Route::put('warga/{warga}', [WargaController::class, 'update'])->name('warga.update');
+        Route::delete('warga/{warga}', [WargaController::class, 'destroy'])->name('warga.destroy');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | ADMIN FULL ACCESS
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware(['checkRole:admin'])->group(function () {
+
+        // User
+        Route::resource('user', UserController::class);
+
+        // Kependudukan
+        Route::resource('warga', WargaController::class)->except(['index', 'show']);
+        Route::resource('kependudukan', KeluargaKkController::class);
+        Route::resource('anggota-keluarga', AnggotaKeluargaController::class);
+
+        // Peristiwa
+        Route::resource('kelahiran', PeristiwaKelahiranController::class);
+        Route::resource('kematian', PeristiwaKematianController::class);
+        Route::resource('pindah', PeristiwaPindahController::class);
+    });
 });

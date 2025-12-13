@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
     public function index(Request $request)
     {
-
         $searchable = ['name', 'email'];
         $filterable = ['role'];
 
@@ -30,20 +30,26 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'      => 'required|string|max:100',
-            'email'     => 'required|email|unique:users,email',
-            'role'      => 'required|in:admin,operator,rt', // ✅ Validasi role
-            'password'  => 'required|min:8|confirmed',
+            'name'     => 'required|string|max:100',
+            'email'    => 'required|email|unique:users,email',
+            'role'     => 'required|in:admin,guest',
+            'password' => 'required|min:8|confirmed',
+            'foto'     => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $data = $request->all();
         $data['password'] = Hash::make($request->password);
 
+        // ✅ SIMPAN FOTO JIKA ADA
+        if ($request->hasFile('foto')) {
+            $data['foto'] = $request->file('foto')->store('user', 'public');
+        }
+
         User::create($data);
 
-        return redirect()->route('user.index')->with('success', 'Data user berhasil ditambahkan!');
+        return redirect()->route('user.index')
+            ->with('success', 'Data user berhasil ditambahkan!');
     }
-
 
     public function edit($id)
     {
@@ -58,7 +64,8 @@ class UserController extends Controller
         $rules = [
             'name'  => 'required|string|max:100',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'role'  => 'required|in:admin,operator,rt', // ✅ Tambah validasi role
+            'role'  => 'required|in:admin,guest',
+            'foto'  => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ];
 
         if ($request->filled('password')) {
@@ -69,22 +76,39 @@ class UserController extends Controller
 
         $data = $request->all();
 
+        // ✅ UPDATE PASSWORD JIKA DIISI
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);
         } else {
             unset($data['password']);
         }
 
+        // ✅ UPDATE FOTO JIKA ADA
+        if ($request->hasFile('foto')) {
+            if ($user->foto) {
+                Storage::disk('public')->delete($user->foto);
+            }
+            $data['foto'] = $request->file('foto')->store('user', 'public');
+        }
+
         $user->update($data);
 
-        return redirect()->route('user.index')->with('success', 'Data user berhasil diperbarui!');
+        return redirect()->route('user.index')
+            ->with('success', 'Data user berhasil diperbarui!');
     }
-
 
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+
+        // ✅ HAPUS FOTO DARI STORAGE
+        if ($user->foto) {
+            Storage::disk('public')->delete($user->foto);
+        }
+
         $user->delete();
-        return redirect()->route('user.index')->with('success', 'Data user berhasil dihapus!');
+
+        return redirect()->route('user.index')
+            ->with('success', 'Data user berhasil dihapus!');
     }
 }
