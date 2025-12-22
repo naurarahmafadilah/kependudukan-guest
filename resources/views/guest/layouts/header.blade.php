@@ -164,14 +164,14 @@
 
                             <!-- MENU -->
                             <li>
-                                <a class="dropdown-item py-2" href="#">
+                                <a class="dropdown-item py-2" href="{{ route('myprofile') }}">
                                     <i class="bi bi-person-circle me-2"></i> My Profile
                                 </a>
                             </li>
-                            <li>
-                                <a class="dropdown-item py-2" href="#">
-                                    <i class="bi bi-gear me-2"></i> Settings
-                                </a>
+
+                            <a class="dropdown-item py-2" href="#">
+                                <i class="bi bi-gear me-2"></i> Settings
+                            </a>
                             </li>
                             <li>
                                 <a class="dropdown-item py-2" href="#">

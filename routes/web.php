@@ -16,11 +16,12 @@ use App\Http\Controllers\PeristiwaPindahController;
 | PUBLIC (TANPA LOGIN)
 |--------------------------------------------------------------------------
 */
-Route::get('/', fn () => view('welcome'))->name('home');
 
-Route::get('/about', fn () => view('guest.pages.about'))->name('guest.pages.about');
-Route::get('/layanan', fn () => view('guest.pages.layanan'))->name('guest.pages.layanan');
-Route::get('/kontak', fn () => view('guest.pages.kontak'))->name('guest.pages.kontak');
+Route::get('/', fn() => view('welcome'))->name('home');
+
+Route::get('/about', fn() => view('guest.pages.about'))->name('guest.pages.about');
+Route::get('/layanan', fn() => view('guest.pages.layanan'))->name('guest.pages.layanan');
+Route::get('/kontak', fn() => view('guest.pages.kontak'))->name('guest.pages.kontak');
 
 /*
 |--------------------------------------------------------------------------
@@ -80,4 +81,9 @@ Route::middleware(['checkIsLogin'])->group(function () {
         Route::resource('kematian', PeristiwaKematianController::class);
         Route::resource('pindah', PeristiwaPindahController::class);
     });
+
+    // My Profile (admin & guest)
+    Route::get('/myprofile', function () {
+        return view('guest.myprofile');
+    })->name('myprofile');
 });
